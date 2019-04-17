@@ -10,7 +10,7 @@ module.exports = (dbPoolInstance) => {
     // };  //end of search game
 
     let getGames = (callback) => {
-        const listGameQuery = `SELECT * FROM games`;
+        const listGameQuery = `SELECT * FROM games ORDER BY id`;
 
         dbPoolInstance.query(listGameQuery, (err, results) => {
             callback(err, results);
@@ -22,6 +22,22 @@ module.exports = (dbPoolInstance) => {
         const indvGameQuery = `SELECT * FROM games WHERE id = ${id}`;
 
         dbPoolInstance.query(indvGameQuery, (err, results) => {
+            callback(err, results);
+        })
+    }
+
+    let editGame = (id, input, callback) => {
+        const editQuery = `UPDATE games SET name = '${input.name}', img = '${input.img}', min_players = '${input.min_players}', max_players = '${input.max_players}', min_duration = '${input.min_duration}', max_duration = '${input.max_duration}', complexity = '${input.complexity}', description = '${input.description}', availability = '${input.availability}' WHERE id = '${id}'`;
+
+        dbPoolInstance.query(editQuery, (err, results) => {
+            callback(err, results);
+        })
+    }  // end of edit game
+
+    let deleteGame = (id, callback) => {
+        const deleteQuery = `DELETE FROM games WHERE id = '${id}'`;
+
+        dbPoolInstance.query(deleteQuery, (err, results) => {
             callback(err, results);
         })
     }
@@ -41,6 +57,8 @@ module.exports = (dbPoolInstance) => {
   return {
     getGames,
     getIndvGame,
+    editGame,
+    deleteGame,
     addGames
   };
 };

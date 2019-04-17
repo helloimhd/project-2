@@ -1,44 +1,30 @@
 var React = require('react');
 var AdminLayout = require('./adminLayout');
 
-class AddGames extends React.Component {
+class EditGame extends React.Component {
 
     render () {
 
-        let name;
-        let nameLength = this.props.data.name.length;
-        if (nameLength >= 1) {
-            name = this.props.data.name[0].value;
-        } else {
-            name = this.props.data.name.value;
-        }
-        const img = this.props.data.image;
-        const minPlayers = this.props.data.minplayers.value;
-        const maxPlayers = this.props.data.maxplayers.value;
-        const minDuration = this.props.data.minplaytime.value;
-        const maxDuration = this.props.data.maxplaytime.value;
-        const description = this.props.data.description;
-
+        const actionLink = `/games/${this.props.id}?_method=put`
 
         return (<AdminLayout>
 
             <div class="new-header">
-                <h1>Add Game</h1>
-                <h3 id="gameId">{this.props.id}</h3>
+                <h1>Edit Game</h1>
             </div>
 
             <div class="container">
-                <form method="POST" action="/add">
+                <form method="POST" action={actionLink}>
 
                     <div class="form-row">
                         <div class="col">
                             <label for="gameName">Name</label>
-                            <input type="text" class="form-control form-control-lg" name="name" value={name} />
+                            <input type="text" class="form-control form-control-lg" name="name" value={this.props.name} />
                         </div>
 
                         <div class="col">
                             <label for="gameImg">Image</label>
-                            <input type="text" class="form-control form-control-lg" name="img" value={img}/>
+                            <input type="text" class="form-control form-control-lg" name="img" value={this.props.img}/>
                         </div>
                     </div>
 
@@ -47,39 +33,54 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="minNumOfPlayers">Min. Players</label>
-                            <input type="number" class="form-control form-control-lg" name="min_players" min="1" value={minPlayers}/>
+                            <input type="number" class="form-control form-control-lg" name="min_players" min="1" value={this.props.min_players}/>
                         </div>
 
                         <div class="col">
                             <label for="maxNumOfPlayers">Max. Players</label>
-                            <input type="number" class="form-control form-control-lg" name="max_players" min="1" value={maxPlayers}/>
+                            <input type="number" class="form-control form-control-lg" name="max_players" min="1" value={this.props.max_players}/>
                         </div>
+                    </div>
 
 {/*                        <div class="col">
                             <label for="suggestedNoOfPlayers"></label>Suggested Players
                             <input type="number" class="form-control form-control-lg" name="suggested_players" />
                         </div>
 */}
+
+                    <div class="form-row">
                         <div class="col">
                             <label for="minDuration">Min. Duration</label>
-                            <input type="number" class="form-control form-control-lg" name="min_duration" value={minDuration} />
+                            <input type="number" class="form-control form-control-lg" name="min_duration" value={this.props.min_duration} />
                         </div>
 
                         <div class="col">
                             <label for="maxDuration">Max. Duration</label>
-                            <input type="number" class="form-control form-control-lg" name="max_duration" value={maxDuration}/>
+                            <input type="number" class="form-control form-control-lg" name="max_duration" value={this.props.max_duration}/>
                         </div>
+                    </div>
+
+                    <div class="form-row">
 
                         <div class="col">
                             <label for="complexity">Complexity</label>
-                            <input type="text" class="form-control form-control-lg" name="complexity" />
+                            <input type="text" class="form-control form-control-lg" name="complexity" value={this.props.complexity} />
                         </div>
+
+                        <div class="col">
+                            <label for="availability">Availability</label>
+                            <select class="form-control form-control-lg" name="availability">
+                                <option value="true">Available</option>
+                                <option value="false">Not Available</option>
+                            </select>
+{/*                            <input type="text" class="form-control form-control-lg" name="availability" value={this.props.availability} />
+*/}                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" rows="5" value={description} ></textarea>
+                            <textarea class="form-control" name="description" rows="5" value={this.props.description} ></textarea>
                         </div>
 
                     </div>
@@ -96,4 +97,4 @@ class AddGames extends React.Component {
     }  // end of rendering
 }  // end of class
 
-module.exports = AddGames;
+module.exports = EditGame;

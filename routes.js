@@ -1,19 +1,6 @@
 module.exports = (app, allModels) => {
 
 
-
-  /*
-   *  =========================================
-   *  =========================================
-   *  =========================================
-   *  =========================================
-   *    ALL ROUTES FOR POKEMON CONTROLLER
-   *  =========================================
-   *  =========================================
-   *  =========================================
-   */
-
-
     const gameRunControllerCallbacks = require('./controllers/games')(allModels);
 
     app.get('/searchGame', gameRunControllerCallbacks.searchGame);
@@ -23,9 +10,17 @@ module.exports = (app, allModels) => {
     app.get('/games', gameRunControllerCallbacks.getGames);
     app.get('/games/:id', gameRunControllerCallbacks.getIndvGame);
 
+    app.get('/games/:id/edit', gameRunControllerCallbacks.editGameForm);
+    app.put('/games/:id', gameRunControllerCallbacks.editGame)
+    app.delete('/games/:id', gameRunControllerCallbacks.deleteGame);
+
     app.get('/addGames/:id', gameRunControllerCallbacks.addGameForm);
     //app.get('/addGames', gameRunControllerCallbacks.addGameForm);
     app.post('/add', gameRunControllerCallbacks.addGame);
+
+
+
+
 
 
 };
