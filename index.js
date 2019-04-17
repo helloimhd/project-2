@@ -2,6 +2,10 @@ const express = require('express');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 
+const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
+var convert = require('xml-js');
+
 /**
  * ===================================
  * Configurations and set up
@@ -21,6 +25,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({
   extended: true
 }));
+
 
 // Set react-views to be the default view engine
 const reactEngine = require('express-react-views').createEngine();

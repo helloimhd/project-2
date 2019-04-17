@@ -33,9 +33,9 @@ if( process.env.DATABASE_URL ){
 
 }else{
   configs = {
-    user: 'akira',
+    user: 'herda',
     host: '127.0.0.1',
-    database: 'testdb',
+    database: 'projecttwo',
     port: 5432
   };
 }
@@ -66,6 +66,9 @@ const allPokemonModelsFunction = require('./models/pokemon');
 
 const pokemonModelsObject = allPokemonModelsFunction( pool );
 
+const gameRunGamesModel = require('./models/games');
+const gameRunModelObject = gameRunGamesModel(pool);
+
 
 
 /*
@@ -95,5 +98,5 @@ module.exports = {
    */
 
   // users: userModelsObject,
-  pokemon: pokemonModelsObject
+  games: gameRunModelObject
 };

@@ -1,6 +1,7 @@
 module.exports = (app, allModels) => {
 
 
+
   /*
    *  =========================================
    *  =========================================
@@ -12,9 +13,19 @@ module.exports = (app, allModels) => {
    *  =========================================
    */
 
-  // require the controller
-  const pokemonControllerCallbacks = require('./controllers/pokemon')(allModels);
 
-  app.get('/pokemons', pokemonControllerCallbacks.index);
-  //app.get('/pokemons/:id', pokemons.getPokemon);
+    const gameRunControllerCallbacks = require('./controllers/games')(allModels);
+
+    app.get('/searchGame', gameRunControllerCallbacks.searchGame);
+    //app.get('/searchGame/:id', gameRunControllerCallbacks.search);
+
+    //app.get('/', gameRunControllerCallbacks.home);
+    app.get('/games', gameRunControllerCallbacks.getGames);
+    app.get('/games/:id', gameRunControllerCallbacks.getIndvGame);
+
+    app.get('/addGames/:id', gameRunControllerCallbacks.addGameForm);
+    //app.get('/addGames', gameRunControllerCallbacks.addGameForm);
+    app.post('/add', gameRunControllerCallbacks.addGame);
+
+
 };

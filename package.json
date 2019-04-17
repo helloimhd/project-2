@@ -10,12 +10,25 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "express": "^4.16.3",
+    "cookie-parser": "^1.4.4",
+    "cors-anywhere": "^0.4.1",
+    "express": "^4.16.4",
     "express-react-views": "^0.10.5",
     "method-override": "^2.3.10",
-    "pg": "^7.4.3",
+    "pg": "^7.9.0",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
-  }
+    "react-dom": "^16.3.2",
+    "xml-js": "^1.6.11",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "description": "Start your MVC app here by copying this bolierplate code.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helloimhd/mvc-template.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/helloimhd/mvc-template/issues"
+  },
+  "homepage": "https://github.com/helloimhd/mvc-template#readme"
 }
