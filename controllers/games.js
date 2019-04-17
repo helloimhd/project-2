@@ -1,3 +1,6 @@
+const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+const parser = require('xml2json');
+
 module.exports = (db) => {
 
   /**
@@ -13,6 +16,7 @@ module.exports = (db) => {
 
    let searchControllerCallback = (request, response) => {
     let gameId = parseInt(request.params.id)
+    console.log(gameId)
 
     response.render('gameRun/addGames', {id: gameId});
    }  // end of search
@@ -44,7 +48,21 @@ module.exports = (db) => {
 
 
   let addGamesFormControllerCallback = (request, response) => {
-    response.render('gameRun/addGames');
+    let gameId = parseInt(request.params.id)
+    console.log(gameId);
+    // get game details first
+    var req = new XMLHttpRequest();
+    req.open("GET", `https://www.boardgamegeek.com/xmlapi2/thing?id=${gameId}`, false);
+
+    req.send(null);
+    const json = JSON.parse(parser.toJson(req.responseText));
+    //console.log(json);
+
+
+    //response.send(JSON.parse(json))
+    ;
+
+   response.render('gameRun/addGames', {id: gameId, data: json.items.item});
   }  // end of add games form
 
 

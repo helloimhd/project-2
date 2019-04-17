@@ -14,15 +14,25 @@ class AddGames extends React.Component {
 
         // }) // end of map
 
-        console.log(this.props.id)
+        //console.log(this.props.data.name);
+
+        const name = this.props.data.name[0].value;
+        const img = this.props.data.image;
+        const minPlayers = this.props.data.minplayers.value;
+        const maxPlayers = this.props.data.maxplayers.value;
+        const minDuration = this.props.data.minplaytime.value;
+        const maxDuration = this.props.data.maxplaytime.value;
+        const description = this.props.data.description;
+
+
+
 
         return (<AdminLayout>
 
             <div class="new-header">
                 <h1>Add Game</h1>
+                <h3 id="gameId">{this.props.id}</h3>
             </div>
-
-            <p>{this.props.id}</p>
 
             <div class="container">
                 <form method="POST" action="/add">
@@ -30,12 +40,12 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="gameName">Name</label>
-                            <input type="text" class="form-control form-control-lg" name="name" />
+                            <input type="text" class="form-control form-control-lg" name="name" value={name} />
                         </div>
 
                         <div class="col">
                             <label for="gameImg">Image</label>
-                            <input type="text" class="form-control form-control-lg" name="img" />
+                            <input type="text" class="form-control form-control-lg" name="img" value={img}/>
                         </div>
                     </div>
 
@@ -44,12 +54,12 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="minNumOfPlayers"></label>Min. Players
-                            <input type="number" class="form-control form-control-lg" name="min_players" min="1" />
+                            <input type="number" class="form-control form-control-lg" name="min_players" min="1" value={minPlayers}/>
                         </div>
 
                         <div class="col">
                             <label for="maxNumOfPlayers"></label>Max. Players
-                            <input type="number" class="form-control form-control-lg" name="max_players" min="1" />
+                            <input type="number" class="form-control form-control-lg" name="max_players" min="1" value={maxPlayers}/>
                         </div>
 
 {/*                        <div class="col">
@@ -59,12 +69,12 @@ class AddGames extends React.Component {
 */}
                         <div class="col">
                             <label for="minDuration"></label>Min. Duration
-                            <input type="number" class="form-control form-control-lg" name="min_duration" />
+                            <input type="number" class="form-control form-control-lg" name="min_duration" value={minDuration} />
                         </div>
 
                         <div class="col">
                             <label for="maxDuration"></label>Max. Duration
-                            <input type="number" class="form-control form-control-lg" name="max_duration" />
+                            <input type="number" class="form-control form-control-lg" name="max_duration" value={maxDuration}/>
                         </div>
 
                         <div class="col">
@@ -76,7 +86,7 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" rows="5"></textarea>
+                            <textarea class="form-control" name="description" rows="5" value={description} ></textarea>
                         </div>
 
                     </div>

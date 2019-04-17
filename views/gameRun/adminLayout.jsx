@@ -39,7 +39,7 @@ class AdminLayout extends React.Component {
                           </li>
 
                           <li class="nav-item">
-                            <a class="nav-link" href="/addGames">Add Games</a>
+                            <a class="nav-link" href="/searchGame">Add Games</a>
                           </li>
                         </ul>
 
