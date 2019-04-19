@@ -54,11 +54,32 @@ module.exports = (dbPoolInstance) => {
         })
     }  // end of addGames
 
+    let choosenGames = (gamesArray, callback) => {
+        //console.log(gamesArray.join())
+
+        const getGameQuery = `SELECT * FROM games WHERE id IN (${gamesArray.join()})`;
+
+        dbPoolInstance.query(getGameQuery, (err, results) => {
+            callback(err, results);
+        })
+    };   // end of choosen games
+
+    let totalGameDuration = (gamesArray, callback) => {
+
+
+
+    }
+
+
+
   return {
     getGames,
     getIndvGame,
     editGame,
     deleteGame,
-    addGames
+    addGames,
+
+    choosenGames,
+    totalGameDuration
   };
 };

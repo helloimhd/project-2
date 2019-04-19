@@ -33,12 +33,21 @@ module.exports = (dbPoolInstance) => {
     };  // end of login
 
     const viewMembers = (callback) => {
-        const getMembersQuery = `SELECT username FROM users WHERE type = 'member'`;
+        const getMembersQuery = `SELECT username FROM users WHERE type = 'member' ORDER BY id`;
 
         dbPoolInstance.query(getMembersQuery, (err, results) => {
             callback(err, results)
         })
     }  // end of view members
+
+    const viewCurrentMember = (currentMember, callback) => {
+        //const
+        const currentMemberQuery = `SELECT id, username, email, contact_num FROM users WHERE username = '${currentMember}'`;
+
+        dbPoolInstance.query(currentMemberQuery, (err, results) => {
+            callback(err, results);
+        })
+    };  // end of view current member
 
 
 
@@ -47,6 +56,7 @@ module.exports = (dbPoolInstance) => {
     checkUser,
     register,
     login,
-    viewMembers
+    viewMembers,
+    viewCurrentMember
   };
 };

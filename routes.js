@@ -45,7 +45,9 @@ module.exports = (app, allModels) => {
     app.get('/rent', membersControllerCallbacks.rent);
     app.get('/rent/:id', membersControllerCallbacks.chooseGames);
 
-    app.post('/rent/:id/games', membersControllerCallbacks.enterDetails);
+    app.post('/rent/:id/games', membersControllerCallbacks.orderDetails);
+
+    app.post('/rent/:id/order', membersControllerCallbacks.order);
 
 
 

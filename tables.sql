@@ -5,7 +5,9 @@ CREATE TABLE IF NOT EXISTS users (
 	id SERIAL PRIMARY KEY,
 	username TEXT,
 	password TEXT,
-	type TEXT
+	type TEXT,
+	email TEXT,
+	contact_num TEXT
 );
 
 
@@ -33,8 +35,13 @@ CREATE TABLE IF NOT EXISTS packages (
 CREATE TABLE IF NOT EXISTS orders (
 	id SERIAL PRIMARY KEY,
 	users_id INTEGER,
+	packages_id INTEGER,
 	one_games_id INTEGER,
 	two_games_id INTEGER,
 	three_games_id INTEGER,
-	four_games_id INTEGER
+	four_games_id INTEGER,
+	duration INTEGER,
+	date TEXT,
+	time TEXT,
+	address TEXT
 );

@@ -68,8 +68,8 @@ module.exports = (db) => {
                 if (request.cookies.loggedIn === "false" || request.cookies.loggedIn === undefined) {
                     response.cookie("loggedIn", true);
 
-                    let hashedUsername = sha256(results.rows[0].username);
-                    response.cookie("username", hashedUsername + SALT);
+                    //let hashedUsername = sha256(results.rows[0].username);
+                    response.cookie("username", results.rows[0].username);
                     response.cookie("type", results.rows[0].type)
                     //console.log(results.rows[0].username)
                     //response.redirect("/");

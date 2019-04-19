@@ -72,6 +72,11 @@ const usersModelObject = usersModel(pool);
 const membersModel = require('./models/members');
 const membersModelObject = membersModel(pool);
 
+const packagesModel = require('./models/packages');
+const packagesModelObject = packagesModel(pool);
+
+const ordersModel = require('./models/orders');
+const ordersModelObject = ordersModel(pool);
 
 
 /*
@@ -103,5 +108,7 @@ module.exports = {
   // users: userModelsObject,
   games: gameRunModelObject,
   users: usersModelObject,
-  members: membersModelObject
+  members: membersModelObject,
+  packages: packagesModelObject,
+  orders: ordersModelObject
 };

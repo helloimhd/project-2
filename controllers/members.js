@@ -16,7 +16,7 @@ module.exports = (db) => {
     };  // end of packages
 
     const rentControllerCallback = (request, response) => {
-        db.members.packages((err, results) => {
+        db.packages.packages((err, results) => {
             if (err) {
                 console.error(err);
                 response.status(500).send("Error getting packages list to rent")
@@ -39,18 +39,98 @@ module.exports = (db) => {
         })
     };  // end of choosing games
 
-    const enterDetailsControllerCallback = (request, response) => {
-        console.log(request.body);
+    const orderDetailsControllerCallback = (request, response) => {
+        const currentMember = request.cookies.username;
         const input = request.body;
+
+        //  check if they select less or more than 4 games
         if (input.games_id.length !== 4) {
             //alert("Please select 4 games");
             response.send("Please select 4 games");
         } else {
-            response.send(request.body);
+            //  get the games they choose
+            db.games.choosenGames(input.games_id, (err, results) => {
+                if (err) {
+                    console.error(err.message);
+                    response.status(500).send("Error getting games details");
+                } else {
+                    // results.rows is an array of games obj
+
+                    //  get current member details
+                    db.users.viewCurrentMember(currentMember, (err, memberResults) => {
+                        if (err) {
+                            console.error(err);
+                            response.status(500).send("Error getting member details");
+                        } else {
+                            // if manage to get member details
+
+                            console.log(memberResults.rows);
+
+                            response.render('member/orderDetails', {gamesDetails: results.rows, memberDetails: memberResults.rows})
+                        }
+                    })  // end of view members
+                }
+            })  // end of choosen games
         }
+    }  // end of order details
+
+    const orderControllerCallback = (request, response) => {
+        const orderDetails = request.body;
+        const packageId = request.params.id;
+
+        const currentMember = request.cookies.username;
+
+        // get total max game duration
+
+        const gamesArray = orderDetails.games_id;
+        console.log(gamesArray);
+        db.games.choosenGames(gamesArray, (err, gameResults) => {
+            if (err) {
+                console.error(err.message);
+                response.status(500).send("Error getting current user details");
+            } else {
+                //  take the max duration
+                console.log(gameResults.rows);
+                let totalDuration = 0;
+                let allMaxDuration = gameResults.rows.map(obj => {
+                    totalDuration = obj.max_duration + totalDuration;
+                });  // end of map
+
+                if (totalDuration > (orderDetails.duration * 40)) {
+                    let html = `<div class="alert alert-danger">
+  <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+</div> `
+                    response.send(html);
+                }
+
+                console.log(totalDuration)
+            }
+
+        })  // end of checking games
+
+        // get user id from cookie
+        db.users.viewCurrentMember(currentMember, (err, results) => {
+            if (err) {
+                console.error(err.message);
+                response.status(500).send("Error getting current user details");
+            } else {
+                const userId = results.rows[0].id
+
+                db.orders.insertOrders(userId, packageId, orderDetails, (err, insertResults) => {
+                    if (err) {
+                        console.error(err.message);
+                        response.status(500).send("Error inserting order details");
+                    } else {
+                        response.send("Order successful");
+                    }
+                })  // end of db orders
+            }  // end of if else statement
+        })  // end of db current member
+        // insert details inside order table
+    };  // end of order
 
 
-    }  // end of entering details
+
 
 
 
@@ -68,7 +148,8 @@ module.exports = (db) => {
     packages: packagesControllerCallback,
     rent: rentControllerCallback,
     chooseGames: chooseGamesControllerCallback,
-    enterDetails: enterDetailsControllerCallback
+    orderDetails: orderDetailsControllerCallback,
+    order: orderControllerCallback
 
   };
 
