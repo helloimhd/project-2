@@ -9,7 +9,7 @@ class Games extends React.Component {
         // return the array of objects
 
         let allGames = games.map(obj => {
-            const gameLink = `/games/${obj.id}`
+            const gameLink = `games/${obj.id}`
             return <div class="card" style={{width:'18rem'}}>
                       <img src={obj.img} class="card-img-top" alt={obj.name} />
                       <div class="card-body">

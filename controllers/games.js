@@ -10,7 +10,7 @@ module.exports = (db) => {
    */
 
    let searchGameControllerCallback = (request, response) => {
-    response.render('gameRun/searchGame');
+    response.render('admin/searchGame');
    };  // end of search game
 
 
@@ -18,31 +18,46 @@ module.exports = (db) => {
     let gameId = parseInt(request.params.id)
     console.log(gameId)
 
-    response.render('gameRun/addGames', {id: gameId});
+    response.render('admin/addGames', {id: gameId});
    }  // end of search
 
 
   let gamesControllerCallback = (request, response) => {
+    const type = request.cookies.type;
     db.games.getGames((err, results) => {
         if (err) {
             console.error(err);
             response.status(500).send("Error getting games list")
         } else {
-            //response.send(results.rows);
-            response.render('gamerun/games', {games:results.rows});
+            //  check if admin or member
+            if (type === "admin") {
+                response.render('admin/games', {games:results.rows});
+            } else {
+                response.render('member/games', {games:results.rows});
+            }
+
         }
     })  // end of db
   };  // end of get games
 
 
   let indvGameControllerCallback = (request, response) => {
+    const type = request.cookies.type;
+
     db.games.getIndvGame(request.params.id, (err, results) => {
         if (err) {
             console.error(err);
             response.status(500).send("Error getting indv game")
         } else {
+            // check cookie is admin or member
+            if (type === "admin") {
+                response.render('admin/indvGame', results.rows[0]);
+            } else {
+                response.render('member/indvGame', results.rows[0]);
+            }
+
             //response.send(results.rows);
-            response.render('gamerun/indvGame', results.rows[0]);
+
         }
     })
   }  // end of indv game details
@@ -55,7 +70,7 @@ module.exports = (db) => {
             console.error(err);
             response.status(500).send("Error getting indv game")
         } else {
-            response.render('gamerun/editGame', results.rows[0]);
+            response.render('admin/editGame', results.rows[0]);
         }
     })  // end of db get indv game
   }  // end of edit game form
@@ -83,7 +98,8 @@ module.exports = (db) => {
             console.error(err);
             response.status(500).send("Error deleting game")
         } else {
-            response.send("Game deleted")
+            //response.send("Game deleted")
+            response.redirect('/games')
         }
     })
   }  // end of delete game
@@ -104,7 +120,7 @@ module.exports = (db) => {
     //response.send(json.items.item)
     ;
     //console.log(json.items.item);
-    response.render('gameRun/addGames', {id: gameId, data: json.items.item});
+    response.render('admin/addGames', {id: gameId, data: json.items.item});
   }  // end of add games form
 
 

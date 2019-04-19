@@ -18,7 +18,7 @@ module.exports = (dbPoolInstance) => {
     }  // end of games list
 
     let getIndvGame = (id, callback) => {
-        console.log(id);
+        //console.log(id);
         const indvGameQuery = `SELECT * FROM games WHERE id = ${id}`;
 
         dbPoolInstance.query(indvGameQuery, (err, results) => {

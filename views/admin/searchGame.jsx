@@ -27,7 +27,7 @@ class SearchGame extends React.Component {
             </div>
 
            <div class="container">
-                <form>
+                <form autocomplete="off">
                   <div class="form-group">
                     <input type="search" class="form-control form-control-lg" id="game-search" placeholder="Search for games..." name="search" />
                   </div>

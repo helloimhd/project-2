@@ -1,6 +1,6 @@
 var React = require('react');
 
-class AdminLayout extends React.Component {
+class MemberLayout extends React.Component {
     render() {
         return (
             <html>
@@ -8,7 +8,7 @@ class AdminLayout extends React.Component {
                     <meta charset="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-{/*                    <link rel="stylesheet" href="/style.css"></link>*/}
+                    <link rel="stylesheet" href="/style.css"></link>
 
                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
@@ -19,13 +19,10 @@ class AdminLayout extends React.Component {
 
                     <link href="https://fonts.googleapis.com/css?family=Courgette|Love+Ya+Like+A+Sister|Chelsea+Market" rel="stylesheet" />
 
-
-
-
                 </head>
 
                 <body>
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
                       <a class="navbar-brand" href="/">GameRun!</a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -39,7 +36,11 @@ class AdminLayout extends React.Component {
                           </li>
 
                           <li class="nav-item">
-                            <a class="nav-link" href="/searchGame">Add Games</a>
+                            <a class="nav-link" href="/games">Games</a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a class="nav-link" href="/packages">Packages</a>
                           </li>
                         </ul>
 
@@ -50,9 +51,9 @@ class AdminLayout extends React.Component {
                       </div>
                     </nav>
 
-                    {this.props.children}
-
-                    <script src="/script.js"></script>
+{/*                    <div class="main-container">*/}
+                        {this.props.children}
+{/*                    </div>*/}
 
 
                 </body>
@@ -61,4 +62,4 @@ class AdminLayout extends React.Component {
     }  // end of rendering
 }  // end of layout
 
-module.exports = AdminLayout;
+module.exports = MemberLayout;

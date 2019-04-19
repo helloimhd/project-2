@@ -3,10 +3,12 @@ module.exports = (app, allModels) => {
 
     const gameRunControllerCallbacks = require('./controllers/games')(allModels);
 
-    app.get('/searchGame', gameRunControllerCallbacks.searchGame);
-    //app.get('/searchGame/:id', gameRunControllerCallbacks.search);
 
     //app.get('/', gameRunControllerCallbacks.home);
+
+    /////////////////////////////////////////////////////////
+    app.get('/searchGame', gameRunControllerCallbacks.searchGame);
+
     app.get('/games', gameRunControllerCallbacks.getGames);
     app.get('/games/:id', gameRunControllerCallbacks.getIndvGame);
 
@@ -15,8 +17,37 @@ module.exports = (app, allModels) => {
     app.delete('/games/:id', gameRunControllerCallbacks.deleteGame);
 
     app.get('/addGames/:id', gameRunControllerCallbacks.addGameForm);
-    //app.get('/addGames', gameRunControllerCallbacks.addGameForm);
     app.post('/add', gameRunControllerCallbacks.addGame);
+
+
+    /////////////////////////////////////////////////////
+
+    const usersControllerCallbacks = require('./controllers/users')(allModels);
+
+    app.get('/register', usersControllerCallbacks.registerForm);
+    app.post('/register', usersControllerCallbacks.register);
+
+    app.get('/login', usersControllerCallbacks.loginForm);
+    app.post('/login', usersControllerCallbacks.login);
+
+    app.get('/logout', usersControllerCallbacks.logout);
+
+    app.get('/viewMembers', usersControllerCallbacks.viewMembers);
+
+
+
+    //////////////////////////////////////////////////////////
+
+    const membersControllerCallbacks = require('./controllers/members')(allModels);
+
+    app.get('/packages', membersControllerCallbacks.packages);
+
+    app.get('/rent', membersControllerCallbacks.rent);
+    app.get('/rent/:id', membersControllerCallbacks.chooseGames);
+
+    app.post('/rent/:id/games', membersControllerCallbacks.enterDetails);
+
+
 
 
 

@@ -24,10 +24,17 @@ CREATE TABLE IF NOT EXISTS games (
 	availability BOOLEAN
 );
 
+CREATE TABLE IF NOT EXISTS packages (
+	id SERIAL PRIMARY KEY,
+	name TEXT,
+	details TEXT
+);
+
 CREATE TABLE IF NOT EXISTS orders (
 	id SERIAL PRIMARY KEY,
 	users_id INTEGER,
 	one_games_id INTEGER,
 	two_games_id INTEGER,
-	three_games_id INTEGER
+	three_games_id INTEGER,
+	four_games_id INTEGER
 );
