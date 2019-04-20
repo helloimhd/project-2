@@ -17,28 +17,27 @@ class OrderDetails extends React.Component {
                         <h5 class="card-title">{obj.name}</h5>
                       </div>
                       <input name="games_id" value={obj.id} hidden />
+                      <input class="max_duration" name="max_duration" value={obj.max_duration} hidden />
                     </div>
 
         }) // end of map
-
-
 
 
         return (<MemberLayout>
 
             <h1>GameRun!</h1>
 
-            <form method="POST" action="order">
+            <form name="orderForm" action="order" onSubmit="return validateForm()" method="POST" >
                 {allGames}
                 <div class="form-row">
                     <div class="col">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control form-control-lg" name="username" value={memberDetails.username} readonly="readonly"/>
+                        <input type="text" class="form-control form-control-lg" name="username" value={memberDetails.username} readOnly="readonly"/>
                     </div>
 
                     <div class="col">
                         <label for="duration">Duration</label>
-                        <input type="number" class="form-control form-control-lg" name="duration" placeholder="$10 per hr" min="1" />
+                        <input type="number" class="form-control form-control-lg" name="duration" placeholder="$10 per hr" min="1" id="duration"/>
                     </div>
                 </div>
 
@@ -46,7 +45,7 @@ class OrderDetails extends React.Component {
                 <div class="form-row">
                     <div class="col">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control form-control-lg" name="email" value={memberDetails.email} readonly="readonly"/>
+                        <input type="text" class="form-control form-control-lg" name="email" value={memberDetails.email} readOnly="readonly"/>
                     </div>
 
                     <div class="col">
@@ -58,7 +57,7 @@ class OrderDetails extends React.Component {
                 <div class="form-row">
                     <div class="col">
                         <label for="contact_num">Contact Number</label>
-                        <input type="text" class="form-control form-control-lg" name="contact_num" value={memberDetails.contact_num} readonly="readonly"/>
+                        <input type="text" class="form-control form-control-lg" name="contact_num" value={memberDetails.contact_num} readOnly="readonly"/>
                     </div>
 
                     <div class="col">
@@ -77,8 +76,10 @@ class OrderDetails extends React.Component {
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg float-right">Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg float-right" id="order-button">Submit</button>
             </form>
+
+             <script src="/orderDetails.js"></script>
 
         </MemberLayout>)  // end of return
 

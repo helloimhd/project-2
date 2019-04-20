@@ -5,6 +5,7 @@ module.exports = (app, allModels) => {
 
 
     //app.get('/', gameRunControllerCallbacks.home);
+    app.get('/test', gameRunControllerCallbacks.test);
 
     /////////////////////////////////////////////////////////
     app.get('/searchGame', gameRunControllerCallbacks.searchGame);

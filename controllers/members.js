@@ -80,33 +80,25 @@ module.exports = (db) => {
 
         const currentMember = request.cookies.username;
 
-        // get total max game duration
-
-        const gamesArray = orderDetails.games_id;
-        console.log(gamesArray);
+/*        const gamesArray = orderDetails.games_id;
+        //console.log(gamesArray);
         db.games.choosenGames(gamesArray, (err, gameResults) => {
             if (err) {
                 console.error(err.message);
                 response.status(500).send("Error getting current user details");
             } else {
                 //  take the max duration
-                console.log(gameResults.rows);
+                //console.log(gameResults.rows);
                 let totalDuration = 0;
                 let allMaxDuration = gameResults.rows.map(obj => {
                     totalDuration = obj.max_duration + totalDuration;
                 });  // end of map
 
-                if (totalDuration > (orderDetails.duration * 40)) {
-                    let html = `<div class="alert alert-danger">
-  <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
-</div> `
-                    response.send(html);
+                if (totalDuration > (orderDetails.duration * 70)) {
+                    console.log("play time longer than your requested rent duration")
                 }
-
-                console.log(totalDuration)
             }
-
-        })  // end of checking games
+        })  // end of checking games*/
 
         // get user id from cookie
         db.users.viewCurrentMember(currentMember, (err, results) => {
