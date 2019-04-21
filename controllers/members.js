@@ -90,45 +90,6 @@ module.exports = (db) => {
         })  // end of db orders
     };  // end of order
 
-
-/*    const myOrdersControllerCallback = (request, response) => {
-        // get user id
-        const userId = request.cookies.user;
-
-        const allOrderDetails = {};
-        // get orders details
-        db.orders.memberOrders(userId, (err, orderResults) => {
-            if (err) {
-                console.error(err.message);
-                response.status(500).send("Error getting order details");
-
-            } else {
-                const orders = orderResults.rows
-                let ordersDetails = orders.map(obj => {
-                    console.log(obj.packages_id);
-                    // get package details
-                    db.packages.indvPackage(obj.packages_id, (err, packageResults) => {
-                        if (err) {
-                            console.error(err.message);
-                            response.status(500).send("Error getting package details");
-                        } else {
-                            // put package results into obj
-                            allOrderDetails.packageDetails = packageResults.rows[0]
-                        }
-                    })  // end of getting indv package
-                })  // end of map
-
-
-                response.send(orderResults.rows)
-            }
-        })  // end of db member orders
-
-        console.log(allOrderDetails);
-
-
-    };  // end of my orders*/
-
-
     const myOrdersControllerCallback = (request, response) => {
         // get user id
         const userId = request.cookies.user;
@@ -172,10 +133,8 @@ module.exports = (db) => {
                         response.render('member/myOrders', {myOrders: results.rows})
                     }
                 })  // end of db my games
-            }
+            }  // end of if statement for error
         })  //  end of my orders
-
-        //console.log(allOrderDetails);
     };  // end of my orders
 
 

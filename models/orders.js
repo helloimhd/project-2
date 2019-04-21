@@ -16,28 +16,44 @@ module.exports = (dbPoolInstance) => {
     };  // end of insert orders
 
     const getAllOrders = (callback) => {
-        const allOrdersQuery = 'SELECT * FROM orders';
+        const allOrdersQuery = `SELECT orders.id, users.username, users.email, users.contact_num, packages.name, orders.duration, orders.date, orders.time, orders.address
+            FROM orders
+            INNER JOIN users
+            ON orders.users_id = users.id
+            INNER JOIN packages
+            ON orders.packages_id = packages.id
+            ORDER BY orders.id`;
 
         dbPoolInstance.query(allOrdersQuery, (err, results) => {
             callback(err, results);
         })
     }  // end of get all orders
 
-    const memberOrders = (userId, callback) => {
-        const myOrderQuery = `SELECT * FROM orders WHERE users_id = '${userId}'`;
 
-        dbPoolInstance.query(myOrderQuery, (err, results) => {
+    const getAllOrderGames = (callback) => {
+        const gamesQuery = `SELECT orders.id, games.name
+            FROM orders
+            INNER JOIN games
+            ON orders.one_games_id = games.id
+            OR orders.two_games_id = games.id
+            OR orders.three_games_id = games.id
+            OR orders.four_games_id = games.id
+            ORDER BY orders.id`;
+
+        dbPoolInstance.query(gamesQuery, (err, results) => {
             callback(err, results);
         })
-    }  // end of memberOrders
+    }  // end of get my games
 
-    // try separately
+
+    // get member orders // separate others and games
     const myOrders = (userId, callback) => {
         const orderQuery = `SELECT orders.id, packages.name, orders.date, orders.time, orders.duration, orders.address
             FROM orders
             INNER JOIN packages
             ON orders.packages_id = packages.id
-            WHERE orders.users_id = '${userId}'`;
+            WHERE orders.users_id = '${userId}'
+            ORDER BY orders.id`;
 
         dbPoolInstance.query(orderQuery, (err, results) => {
             callback(err, results);
@@ -65,7 +81,7 @@ module.exports = (dbPoolInstance) => {
   return {
     insertOrders,
     getAllOrders,
-    memberOrders,
+    getAllOrderGames,
     myOrders,
     getMyGames
   };

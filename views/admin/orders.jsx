@@ -7,51 +7,60 @@ class Orders extends React.Component {
 
         const orders = this.props.orders;
         // return the array of objects
+        //console.log(myOrders)
 
         let allOrders = orders.map(obj => {
 
-        //const actionDelete = `/myTweeds/${obj.id}/delete?_method=delete`;
             return <tr>
-                <td>{obj.tweeds}</td>
+                <th scope="row">{obj.id}</th>
                 <td>
-                <form method="POST" action={actionDelete}>
-                    <button type="submit" class="btn">❌</button>
-                </form>
+                    {obj.username}
+                    <br/>
+                    {obj.contact_num}
+                    <br/>
+                    {obj.email}
                 </td>
+                <td>{obj.name}</td>
+                <td>
+                    <ul>
+                        <li>{obj.games[0]}</li>
+                        <li>{obj.games[1]}</li>
+                        <li>{obj.games[2]}</li>
+                        <li>{obj.games[3]}</li>
+                    </ul>
+                </td>
+                <td>{obj.date}</td>
+                <td>{obj.time}</td>
+                <td>{obj.duration}</td>
+                <td>{obj.address}</td>
             </tr>
 
 
             }) // end of map
-        return (<UserLayout>
+        return (<AdminLayout>
 
-            <h1>My Personal Tweeds</h1>
+            <h1>My Orders</h1>
 
-            <div class="personalTweedsMain-container">
-
-                <div class="tweedForm-container">
-
-                    <form method="POST" action="/tweed" class="form-inline" autocomplete="off">
-
-                        <input type="text" class="form-control form-control-lg" name="tweed" placeholder="What are you thinking?" size="55" />
-
-                        <div class="tweedButton-container">
-                            <button type="submit" class="btn btn-primary btn-lg float-right">Tweed</button>
-                        </div>
-                    </form>
-
-                </div>
-
-                <div class="personalTweeds-container">
-                    <table class="table table-hover">
-                      <tbody>
-                        {allTweeds}
-                      </tbody>
-                    </table>
-                </div>
-
+            <div class="container">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                        <th>Order</th>
+                        <th>Username</th>
+                        <th>Package</th>
+                        <th>Games</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Duration</th>
+                        <th>Address</th>
+                    </tr>
+                    {allOrders}
+                  </tbody>
+                </table>
             </div>
 
-        </UserLayout>)  // end of return
+
+        </AdminLayout>)  // end of return
 
     }  // end of rendering
 }  // end of class
