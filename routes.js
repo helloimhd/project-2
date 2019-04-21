@@ -1,11 +1,13 @@
 module.exports = (app, allModels) => {
 
+
+////////////////////////////////////////////////////
+
     const adminControllerCallbacks = require('./controllers/admin')(allModels);
 
     app.get('/orders', adminControllerCallbacks.viewOrders);
 
-
-
+//////////////////////////////////////////////
 
     const gameRunControllerCallbacks = require('./controllers/games')(allModels);
 
@@ -25,6 +27,8 @@ module.exports = (app, allModels) => {
     /////////////////////////////////////////////////////
 
     const usersControllerCallbacks = require('./controllers/users')(allModels);
+
+    app.get('/', usersControllerCallbacks.home);
 
     app.get('/register', usersControllerCallbacks.registerForm);
     app.post('/register', usersControllerCallbacks.register);

@@ -8,6 +8,44 @@ module.exports = (db) => {
    * ===========================================
    */
 
+    const homeControllerCallback = (request, response) => {
+
+        const userId = request.cookies.user;
+        db.games.getGames((err, results) => {
+            if (err) {
+                response.status(500).send("Error getting games list", err.message)
+
+            } else {
+                // //  if no error, render and set cookies
+
+                // set cookie
+                // means not logged in
+                console.log(request.cookies.loggedIn);
+                if (request.cookies.loggedIn !== "true") {
+                    console.log("pass this")
+                    response.cookie("loggedIn", false)
+                    // render non-user homepage
+                    // can bring straight to loginform page
+                    response.render('home', {games:results.rows});
+
+                } else {
+                    // means user is already logged in
+                    const currentLog = request.cookies.loggedIn;
+                    request.cookies.loggedIn = currentLog;
+
+                    response.redirect('/games')
+
+/*                    // check type of user, if admin - redirect to admin home, if member then redirect to member home
+                    if (request.cookies.type === "admin") {
+                        response.redirect('/games')
+                    } else {
+                        response.send("You are a member");
+                    }*/
+                }
+            }
+        });
+    }  // end of home
+
    let registerFormControllerCallback = (request, response) => {
     response.render('registerForm');
    };  // end of register form
@@ -24,7 +62,8 @@ module.exports = (db) => {
             //console.log(results);
 
             if (results.rowCount >= 1) {
-                response.send("You already registered. Please login.");
+                //response.send("You already registered. Please login.");
+                response.render('failed/alreadyExist')
 
             } else {
                 //  if rowcount = 0, means not registered
@@ -36,8 +75,8 @@ module.exports = (db) => {
                         response.status(500).send("Error registering")
 
                     } else {
-                        response.send("Register - Successful");
-                        //response.redirect('/');
+                        //response.send("Register - Successful");
+                        response.redirect('/login');
                     }
                 })  // end of register db
             }
@@ -60,8 +99,8 @@ module.exports = (db) => {
             // check if there is such user
             //console.log(results);
             if (results.rowCount === 0) {
-                response.status(403).send('Invalid username/password!');
-                //response.send("Invalid username/password");
+                //response.status(403).send('Invalid username/password!');
+                response.status(403).render('failed/invalidUser');
             } else {
                 //console.log(results.rows[0])
                 // set cookie
@@ -71,16 +110,16 @@ module.exports = (db) => {
                     //let hashedUsername = sha256(results.rows[0].username);
                     response.cookie("user", results.rows[0].id);
                     response.cookie("type", results.rows[0].type)
-                    //console.log(results.rows[0].username)
-                    //response.redirect("/");
 
+                    response.redirect("/");
+/*
                     // check type of user, if admin - redirect to admin home, if member then redirect to member home
                     if (results.rows[0].type === "admin") {
                         //response.send("You are admin");
                         response.redirect('/games')
                     } else {
-                        response.send("You are a member");
-                    }
+                        //response.send("You are a member");
+                    }*/
                 }
             }
         })
@@ -118,6 +157,8 @@ module.exports = (db) => {
    * ===========================================
    */
   return {
+    home: homeControllerCallback,
+
     registerForm: registerFormControllerCallback,
     register: registerControllerCallback,
 

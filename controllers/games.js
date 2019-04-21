@@ -9,10 +9,6 @@ module.exports = (db) => {
    * ===========================================
    */
 
-   let testControllerCallback = (request, response) => {
-    response.render('test');
-   }
-
    let searchGameControllerCallback = (request, response) => {
     response.render('admin/searchGame');
    };  // end of search game
@@ -149,7 +145,6 @@ module.exports = (db) => {
    * ===========================================
    */
   return {
-    test: testControllerCallback,
     searchGame: searchGameControllerCallback,
     search: searchControllerCallback,
 

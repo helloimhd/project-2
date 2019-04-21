@@ -1,7 +1,7 @@
 var React = require('react');
-var AdminLayout = require('./adminLayout');
+var Layout = require('./layout');
 
-class Games extends React.Component {
+class Home extends React.Component {
 
     render () {
 
@@ -9,7 +9,6 @@ class Games extends React.Component {
         // return the array of objects
 
         let allGames = games.map(obj => {
-            const gameLink = `games/${obj.id}`
 
             return <div class="games-container">
                         <div class="gameImg-container">
@@ -17,23 +16,22 @@ class Games extends React.Component {
                         </div>
 
                         <div class="gameName-container">
-                            <h5><a href={gameLink}>{obj.name}</a></h5>
+                            <h5>{obj.name}</h5>
                         </div>
                     </div>
-
         }) // end of map
 
 
-        return (<AdminLayout>
+        return (<Layout>
 
             <h1>GameRun!</h1>
             <div class="home-container">
                 {allGames}
             </div>
 
-        </AdminLayout>)  // end of return
+        </Layout>)  // end of return
 
     }  // end of rendering
 }  // end of class
 
-module.exports = Games;
+module.exports = Home;
