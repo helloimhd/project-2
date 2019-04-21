@@ -31,26 +31,6 @@ module.exports = (dbPoolInstance) => {
         })
     }  // end of memberOrders
 
-/*
-    //  try inner join
-    const myOrders = (userId, callback) => {
-        const orderQuery = `SELECT orders.id, packages.name AS packageName, games.name AS gameName, orders.date, orders.time, orders.duration, orders.address
-            FROM orders
-            INNER JOIN packages
-            ON orders.packages_id = packages.id
-            INNER JOIN games
-            ON orders.one_games_id = games.id
-            OR orders.two_games_id = games.id
-            OR orders.three_games_id = games.id
-            OR four_games_id = games.id
-            WHERE orders.users_id = '${userId}'
-            ORDER BY orders.id`;
-
-        dbPoolInstance.query(orderQuery, (err, results) => {
-            callback(err, results);
-        })
-    }  // end of my orders*/
-
     // try separately
     const myOrders = (userId, callback) => {
         const orderQuery = `SELECT orders.id, packages.name, orders.date, orders.time, orders.duration, orders.address
@@ -62,7 +42,7 @@ module.exports = (dbPoolInstance) => {
         dbPoolInstance.query(orderQuery, (err, results) => {
             callback(err, results);
         })
-    }  // end of test
+    }  // end of myOrders
 
 
     const getMyGames = (userId, callback) => {
@@ -79,13 +59,7 @@ module.exports = (dbPoolInstance) => {
         dbPoolInstance.query(gamesQuery, (err, results) => {
             callback(err, results);
         })
-    }
-
-
-
-
-
-
+    }  // end of get my games
 
 
   return {

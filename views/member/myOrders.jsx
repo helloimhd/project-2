@@ -9,9 +9,6 @@ class MyOrders extends React.Component {
         // return the array of objects
         //console.log(myOrders)
 
-        const myGameName = this.props.myGameName;
-        //console.log(myGameName)
-
         let allOrders = myOrders.map(obj => {
 
 /*            return <tr>

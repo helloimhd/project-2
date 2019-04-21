@@ -156,7 +156,6 @@ module.exports = (db) => {
                         })
 
                         const gameNameArray = [];
-                        //const gameNameObj = {};
                         let n = 0;
                         // spit the game name array
                         var i, j, tempArray, chunk = 4;
@@ -164,20 +163,13 @@ module.exports = (db) => {
                             const gameNameObj = {};
                             tempArray = gameName.slice(i,i+chunk);
 
+                            // put the array in the results rows obj
                             results.rows[n].games = tempArray;
-                            // store temp array
-                            gameNameObj.id = n;
-                            gameNameObj.games = tempArray;
-                            //console.log(gameNameObj)
-                            //gameNameObj[n] = tempArray;
                             n++;
-                            //console.log(gameNameObj)
-                            gameNameArray.push(gameNameObj)
                         }
                         console.log(results.rows);
 
                         response.render('member/myOrders', {myOrders: results.rows})
-
                     }
                 })  // end of db my games
             }
