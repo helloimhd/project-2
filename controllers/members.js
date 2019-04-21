@@ -40,7 +40,7 @@ module.exports = (db) => {
     };  // end of choosing games
 
     const orderDetailsControllerCallback = (request, response) => {
-        const currentMember = request.cookies.username;
+        const currentMember = request.cookies.user;
         const input = request.body;
 
         //  check if they select less or more than 4 games
@@ -78,48 +78,115 @@ module.exports = (db) => {
         const orderDetails = request.body;
         const packageId = request.params.id;
 
-        const currentMember = request.cookies.username;
+        const userId = request.cookies.user;
 
-/*        const gamesArray = orderDetails.games_id;
-        //console.log(gamesArray);
-        db.games.choosenGames(gamesArray, (err, gameResults) => {
+        db.orders.insertOrders(userId, packageId, orderDetails, (err, insertResults) => {
             if (err) {
                 console.error(err.message);
-                response.status(500).send("Error getting current user details");
+                response.status(500).send("Error inserting order details");
             } else {
-                //  take the max duration
-                //console.log(gameResults.rows);
-                let totalDuration = 0;
-                let allMaxDuration = gameResults.rows.map(obj => {
-                    totalDuration = obj.max_duration + totalDuration;
-                });  // end of map
-
-                if (totalDuration > (orderDetails.duration * 70)) {
-                    console.log("play time longer than your requested rent duration")
-                }
+                response.send("Order successful");
             }
-        })  // end of checking games*/
+        })  // end of db orders
+    };  // end of order
 
-        // get user id from cookie
-        db.users.viewCurrentMember(currentMember, (err, results) => {
+
+/*    const myOrdersControllerCallback = (request, response) => {
+        // get user id
+        const userId = request.cookies.user;
+
+        const allOrderDetails = {};
+        // get orders details
+        db.orders.memberOrders(userId, (err, orderResults) => {
             if (err) {
                 console.error(err.message);
-                response.status(500).send("Error getting current user details");
-            } else {
-                const userId = results.rows[0].id
+                response.status(500).send("Error getting order details");
 
-                db.orders.insertOrders(userId, packageId, orderDetails, (err, insertResults) => {
+            } else {
+                const orders = orderResults.rows
+                let ordersDetails = orders.map(obj => {
+                    console.log(obj.packages_id);
+                    // get package details
+                    db.packages.indvPackage(obj.packages_id, (err, packageResults) => {
+                        if (err) {
+                            console.error(err.message);
+                            response.status(500).send("Error getting package details");
+                        } else {
+                            // put package results into obj
+                            allOrderDetails.packageDetails = packageResults.rows[0]
+                        }
+                    })  // end of getting indv package
+                })  // end of map
+
+
+                response.send(orderResults.rows)
+            }
+        })  // end of db member orders
+
+        console.log(allOrderDetails);
+
+
+    };  // end of my orders*/
+
+
+    const myOrdersControllerCallback = (request, response) => {
+        // get user id
+        const userId = request.cookies.user;
+
+        db.orders.myOrders(userId, (err, results) => {
+            if (err) {
+                console.error(err.message);
+                response.status(500).send("Error getting my own orders");
+            } else {
+                //console.log(results.rows)
+                //response.render('member/myOrders', {myOrders: results.rows})
+
+                // get the games so can put in one td
+                db.orders.getMyGames(userId, (err, gameResults) => {
                     if (err) {
                         console.error(err.message);
-                        response.status(500).send("Error inserting order details");
+                        response.status(500).send("Error getting my own orders");
                     } else {
-                        response.send("Order successful");
+                        //console.log(gameResults.rows)
+                        const games = gameResults.rows
+
+                        const gameName = [];
+                        games.map(obj => {
+                            gameName.push(obj.name)
+                        })
+
+                        const gameNameArray = [];
+                        //const gameNameObj = {};
+                        let n = 0;
+                        // spit the game name array
+                        var i, j, tempArray, chunk = 4;
+                        for (i=0,j=gameName.length; i<j; i+=chunk) {
+                            const gameNameObj = {};
+                            tempArray = gameName.slice(i,i+chunk);
+
+                            results.rows[n].games = tempArray;
+                            // store temp array
+                            gameNameObj.id = n;
+                            gameNameObj.games = tempArray;
+                            //console.log(gameNameObj)
+                            //gameNameObj[n] = tempArray;
+                            n++;
+                            //console.log(gameNameObj)
+                            gameNameArray.push(gameNameObj)
+                        }
+                        console.log(results.rows);
+
+                        response.render('member/myOrders', {myOrders: results.rows})
+
                     }
-                })  // end of db orders
-            }  // end of if else statement
-        })  // end of db current member
-        // insert details inside order table
-    };  // end of order
+                })  // end of db my games
+            }
+        })  //  end of my orders
+
+        //console.log(allOrderDetails);
+    };  // end of my orders
+
+
 
 
 
@@ -141,7 +208,8 @@ module.exports = (db) => {
     rent: rentControllerCallback,
     chooseGames: chooseGamesControllerCallback,
     orderDetails: orderDetailsControllerCallback,
-    order: orderControllerCallback
+    order: orderControllerCallback,
+    myOrders: myOrdersControllerCallback
 
   };
 

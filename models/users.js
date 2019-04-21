@@ -42,7 +42,7 @@ module.exports = (dbPoolInstance) => {
 
     const viewCurrentMember = (currentMember, callback) => {
         //const
-        const currentMemberQuery = `SELECT id, username, email, contact_num FROM users WHERE username = '${currentMember}'`;
+        const currentMemberQuery = `SELECT id, username, email, contact_num FROM users WHERE id = '${currentMember}'`;
 
         dbPoolInstance.query(currentMemberQuery, (err, results) => {
             callback(err, results);

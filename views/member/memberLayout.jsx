@@ -45,6 +45,10 @@ class MemberLayout extends React.Component {
                             <a class="nav-link" href="/rent">Rent Games</a>
                           </li>
 
+                          <li class="nav-item">
+                            <a class="nav-link" href="/myOrders">My Orders</a>
+                          </li>
+
 
 
                         </ul>

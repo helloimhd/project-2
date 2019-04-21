@@ -1,13 +1,14 @@
 module.exports = (app, allModels) => {
 
+    const adminControllerCallbacks = require('./controllers/admin')(allModels);
+
+    app.get('/orders', adminControllerCallbacks.viewOrders);
+
+
+
 
     const gameRunControllerCallbacks = require('./controllers/games')(allModels);
 
-
-    //app.get('/', gameRunControllerCallbacks.home);
-    app.get('/test', gameRunControllerCallbacks.test);
-
-    /////////////////////////////////////////////////////////
     app.get('/searchGame', gameRunControllerCallbacks.searchGame);
 
     app.get('/games', gameRunControllerCallbacks.getGames);
@@ -45,10 +46,14 @@ module.exports = (app, allModels) => {
 
     app.get('/rent', membersControllerCallbacks.rent);
     app.get('/rent/:id', membersControllerCallbacks.chooseGames);
-
     app.post('/rent/:id/games', membersControllerCallbacks.orderDetails);
-
     app.post('/rent/:id/order', membersControllerCallbacks.order);
+
+    app.get('/myOrders', membersControllerCallbacks.myOrders);
+
+
+
+
 
 
 

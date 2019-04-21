@@ -10,7 +10,7 @@ function validateForm() {
   const duration = document.forms["orderForm"]["duration"].value;
   const intDuration = parseInt(duration);
 
-  if (totalDuration > (duration * 40)) {
+  if (totalDuration > (duration * 60)) {
     alert("NOTE: Your total game duration is more than rented duration.");
   }
 }

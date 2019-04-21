@@ -69,7 +69,7 @@ module.exports = (db) => {
                     response.cookie("loggedIn", true);
 
                     //let hashedUsername = sha256(results.rows[0].username);
-                    response.cookie("username", results.rows[0].username);
+                    response.cookie("user", results.rows[0].id);
                     response.cookie("type", results.rows[0].type)
                     //console.log(results.rows[0].username)
                     //response.redirect("/");
@@ -89,7 +89,7 @@ module.exports = (db) => {
     const logoutControllerCallback = (request, response) => {
         console.log(request.cookies.loggedIn);
         response.cookie("loggedIn", false);
-        response.cookie("username", undefined);
+        response.cookie("user", undefined);
         response.cookie("type", undefined);
         response.redirect('/');
     };  // end of logout
