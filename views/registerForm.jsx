@@ -25,6 +25,18 @@ class Register extends React.Component {
                         </div>
                     </div>
 
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control form-control-lg" name="email" placeholder="Enter your email" />
+                        </div>
+
+                        <div class="col">
+                            <label for="contact_num">Contact No.</label>
+                            <input type="password" class="form-control form-control-lg" name="contact_num" placeholder="Enter your number" />
+                        </div>
+                    </div>
+
                     <br />
 
                     <button type="submit" class="btn btn-primary btn-lg float-right">Register</button>

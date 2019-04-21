@@ -13,9 +13,9 @@ module.exports = (dbPoolInstance) => {
         const password = sha256(input.password + SALT);
 
         const member = "member";
-        const addUserQuery = `INSERT INTO users (username, password, type) VALUES ($1, $2, $3) RETURNING id`;
+        const addUserQuery = `INSERT INTO users (username, password, type, email, contact_num) VALUES ($1, $2, $3, $4, $5) RETURNING id`;
 
-        const values = [input.username, password, member];
+        const values = [input.username, password, member, input.email, input.contact_num];
 
         dbPoolInstance.query(addUserQuery, values, (err, results) => {
             callback(err, results);
