@@ -14,7 +14,8 @@ module.exports = (db) => {
         db.games.getGames((err, results) => {
             if (err) {
                 console.log(err.message)
-                response.status(500).send("Error getting games list");
+                response.redirect('/login')
+                //response.status(500).send("Error getting games list");
 
             } else {
                 // //  if no error, render and set cookies
