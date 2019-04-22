@@ -79,14 +79,14 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" rows="5" value={description} ></textarea>
+                            <textarea id="textareaInputclass" ="form-control" name="description" rows="5" value={description} ></textarea>
                         </div>
 
                     </div>
 
                     <br />
 
-                    <button type="submit" class="btn btn-primary btn-lg float-right">Submit</button>
+                    <button type="submit" class="btn btn-dark btn-lg float-right" id="addButton">Add Game</button>
 
                 </form>
             </div>

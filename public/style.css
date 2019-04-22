@@ -94,7 +94,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="da
 	font-size: 25px;
 }
 
-#loginButton, #deleteButton, #editLink, #backButton, #packageButton, #chooseGamesButton, #order-button, #search-button {
+#loginButton, #deleteButton, #editLink, #backButton, #packageButton, #chooseGamesButton, #order-button, #search-button, #addButton {
 	font-family: 'Germania One', cursive !important;
   font-size: 25px !important;
 }

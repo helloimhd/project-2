@@ -47,16 +47,3 @@ CREATE TABLE IF NOT EXISTS orders (
 	time TEXT,
 	address TEXT
 );
-
-
-SELECT orders.id, packages.name AS packageName, games.name AS gameName, orders.date, orders.time, orders.duration, orders.address
-FROM orders
-INNER JOIN packages
-ON orders.packages_id = packages.id
-INNER JOIN games
-ON orders.one_games_id = games.id
-OR orders.two_games_id = games.id
-OR orders.three_games_id = games.id
-OR four_games_id = games.id
-GROUP BY orders.id
-WHERE orders.users_id = '3'`
