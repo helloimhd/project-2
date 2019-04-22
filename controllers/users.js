@@ -13,7 +13,8 @@ module.exports = (db) => {
         const userId = request.cookies.user;
         db.games.getGames((err, results) => {
             if (err) {
-                response.status(500).send("Error getting games list", err.message)
+                console.log(err.message)
+                response.status(500).send("Error getting games list");
 
             } else {
                 // //  if no error, render and set cookies

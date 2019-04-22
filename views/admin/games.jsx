@@ -16,7 +16,7 @@ class Games extends React.Component {
                             <img src={obj.img} alt={obj.name} />
                         </div>
 
-                        <div class="gameName-container">
+                        <div class="title-container">
                             <h5><a href={gameLink}>{obj.name}</a></h5>
                         </div>
                     </div>

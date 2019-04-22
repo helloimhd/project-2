@@ -47,6 +47,7 @@ module.exports = (db) => {
         if (input.games_id.length !== 4) {
             //alert("Please select 4 games");
             response.send("Please select 4 games");
+
         } else {
             //  get the games they choose
             db.games.choosenGames(input.games_id, (err, results) => {

@@ -27,7 +27,7 @@ class Login extends React.Component {
 
                     <br />
 
-                    <button type="submit" class="btn btn-dark btn-lg float-right">Login</button>
+                    <button type="submit" class="btn btn-dark btn-lg float-right" id="loginButton">Login</button>
 
                 </form>
             </div>

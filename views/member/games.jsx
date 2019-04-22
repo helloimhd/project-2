@@ -10,11 +10,15 @@ class Games extends React.Component {
 
         let allGames = games.map(obj => {
             const gameLink = `games/${obj.id}`
-            return <div class="card" style={{width:'18rem'}}>
-                      <img src={obj.img} class="card-img-top" alt={obj.name} />
-                      <div class="card-body">
-                        <h5 class="card-title"><a href={gameLink}>{obj.name}</a></h5>
-                      </div>
+
+            return <div class="games-container">
+                        <div class="gameImg-container">
+                            <img src={obj.img} alt={obj.name} />
+                        </div>
+
+                        <div class="title-container">
+                            <h5><a href={gameLink}>{obj.name}</a></h5>
+                        </div>
                     </div>
         }) // end of map
 
@@ -22,7 +26,9 @@ class Games extends React.Component {
         return (<MemberLayout>
 
             <h1>GameRun!</h1>
-            {allGames}
+            <div class="home-container">
+                {allGames}
+            </div>
 
         </MemberLayout>)  // end of return
 

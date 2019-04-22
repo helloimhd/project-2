@@ -42,11 +42,7 @@ class EditGame extends React.Component {
                         </div>
                     </div>
 
-{/*                        <div class="col">
-                            <label for="suggestedNoOfPlayers"></label>Suggested Players
-                            <input type="number" class="form-control form-control-lg" name="suggested_players" />
-                        </div>
-*/}
+                    <br/>
 
                     <div class="form-row">
                         <div class="col">
@@ -60,8 +56,9 @@ class EditGame extends React.Component {
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <br/>
 
+                    <div class="form-row">
                         <div class="col">
                             <label for="complexity">Complexity</label>
                             <input type="text" class="form-control form-control-lg" name="complexity" value={this.props.complexity} />
@@ -69,25 +66,26 @@ class EditGame extends React.Component {
 
                         <div class="col">
                             <label for="availability">Availability</label>
-                            <select class="form-control form-control-lg" name="availability">
+                            <select class="form-control form-control-lg" name="availability" id="availabiltiyInput">
                                 <option value="true">Available</option>
                                 <option value="false">Not Available</option>
                             </select>
-{/*                            <input type="text" class="form-control form-control-lg" name="availability" value={this.props.availability} />
-*/}                        </div>
+                        </div>
                     </div>
+
+                    <br/>
 
                     <div class="form-row">
                         <div class="col">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" rows="5" value={this.props.description} ></textarea>
+                            <textarea id="textareaInput" class="form-control" name="description" rows="5" value={this.props.description} ></textarea>
                         </div>
 
                     </div>
 
                     <br />
 
-                    <button type="submit" class="btn btn-primary btn-lg float-right">Submit</button>
+                    <button id="editLink" type="submit" class="btn btn-warning btn-lg float-right">Edit</button>
 
                 </form>
             </div>

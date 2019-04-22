@@ -67,7 +67,7 @@ module.exports = (db) => {
 
     db.games.getIndvGame(id, (err, results) => {
         if (err) {
-            console.error(err);
+            console.error(err.message);
             response.status(500).send("Error getting indv game")
         } else {
             response.render('admin/editGame', results.rows[0]);
@@ -81,7 +81,7 @@ module.exports = (db) => {
 
         db.games.editGame(id, input, (err, results) => {
             if (err) {
-                console.error(err);
+                console.error(err.message);
                 response.status(500).send("Error updating game");
             } else {
                 //response.send("Game updated")

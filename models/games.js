@@ -27,9 +27,12 @@ module.exports = (dbPoolInstance) => {
     }
 
     let editGame = (id, input, callback) => {
-        const editQuery = `UPDATE games SET name = '${input.name}', img = '${input.img}', min_players = '${input.min_players}', max_players = '${input.max_players}', min_duration = '${input.min_duration}', max_duration = '${input.max_duration}', complexity = '${input.complexity}', description = '${input.description}', availability = '${input.availability}' WHERE id = '${id}'`;
 
-        dbPoolInstance.query(editQuery, (err, results) => {
+        const editQuery = `UPDATE games SET name = $1, img = $2, min_players = $3, max_players = $4, min_duration = $5, max_duration = $6, complexity = $7, description = $8, availability = $9 WHERE id = '${id}'`;
+
+        const values = [input.name, input.img, input.min_players, input.max_players, input.min_duration, input.max_duration, input.complexity, input.description, input.availability];
+
+        dbPoolInstance.query(editQuery, values, (err, results) => {
             callback(err, results);
         })
     }  // end of edit game
