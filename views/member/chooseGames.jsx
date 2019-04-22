@@ -45,7 +45,7 @@ class Games extends React.Component {
 
         return (<MemberLayout>
 
-            <h1>GameRun!</h1>
+            <h2>Choose your games...</h2>
             <form name="gameSelection" method="POST" action={actionLink} onSubmit="return validateGames()">
             <div class="home-container">
                 {allGames}
@@ -55,7 +55,12 @@ class Games extends React.Component {
                 <button type="submit" class="btn btn-dark btn-lg" id="chooseGamesButton">Next
                 </button>
             </div>
+
+
+
             </form>
+
+
 
             <script src="/checkSelectedGames.js"></script>
 

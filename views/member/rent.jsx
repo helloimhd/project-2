@@ -22,6 +22,7 @@ class Rent extends React.Component {
 
                     <div class="details-container">
                         <h6>{obj.details}</h6>
+                        <p>${obj.price}</p>
                     </div>
 
                     <a class="btn btn btn-outline-dark float-right" href={link} role="button" id="packageButton">Game On!</a>

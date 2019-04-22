@@ -1,4 +1,5 @@
 let body = document.body;
+let container = document.getElementById("search-container")
 
 var parser = (data) => {
     var parser, xmlDoc
@@ -9,7 +10,12 @@ var parser = (data) => {
 }
 
 var doSearch = () => {
-    console.log("it goes inside search")
+    // to clear div first
+    $(document).ready(function(){
+        $(".gameList-container").empty();
+    });
+
+
     var input = document.querySelector('#game-search');
     console.log(input.value);
 
@@ -28,6 +34,9 @@ var doSearch = () => {
 
     //  create a list from items and link it to game details, so a list of a tag
     // need to store id also
+    let div = document.createElement("div");
+    div.className = "gameList-container"
+
     let ul = document.createElement("ul");
     ul.id = "gameList";
     for (let i = 0; i < items.length; i++) {
@@ -47,7 +56,8 @@ var doSearch = () => {
         li.id = gameId;
         ul.appendChild(li);
     }
-    body.appendChild(ul);
+    div.appendChild(ul);
+    container.appendChild(div);
 };
 
 var searchButton = document.getElementById("search-button");

@@ -10,23 +10,13 @@ class SearchGame extends React.Component {
 
     render () {
 
-        // let artistName = this.props.artistName;
-        // let allArtist = artistName.map(obj => {
-
-
-        // return <option value={obj.id}>{obj.name}</option>
-
-
-        // }) // end of map
-
-
         return (<AdminLayout>
 
             <div class="new-header">
                 <h1>Search Game</h1>
             </div>
 
-           <div class="container">
+           <div class="container" id="search-container">
                 <form autocomplete="off">
                   <div class="form-group">
                     <input type="search" class="form-control form-control-lg" id="game-search" placeholder="Search for games..." name="search" />
@@ -34,7 +24,7 @@ class SearchGame extends React.Component {
                 </form>
 
                 <div class="submit-container">
-                    <button type="button" class="btn btn-light btn-lg" id="search-button">Search</button>
+                    <button type="button" class="btn btn btn-outline-dark btn-lg" id="search-button">Search</button>
                 </div>
             </div>
 

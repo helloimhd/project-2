@@ -6,6 +6,7 @@ module.exports = (app, allModels) => {
     const adminControllerCallbacks = require('./controllers/admin')(allModels);
 
     app.get('/orders', adminControllerCallbacks.viewOrders);
+    app.delete('/orders/:id/delete', adminControllerCallbacks.deleteOrder);
 
 //////////////////////////////////////////////
 

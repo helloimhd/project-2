@@ -11,16 +11,6 @@ class MyOrders extends React.Component {
 
         let allOrders = myOrders.map(obj => {
 
-/*            return <tr>
-                <td>{obj.id}</td>
-                <td>{obj.packagename}</td>
-                <td>{obj.gamename}</td>
-                <td>{obj.date}</td>
-                <td>{obj.time}</td>
-                <td>{obj.duration}</td>
-                <td>{obj.address}</td>
-            </tr>*/
-
             return <tr>
                 <th scope="row">{obj.id}</th>
                 <td>{obj.name}</td>

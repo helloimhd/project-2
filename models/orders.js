@@ -15,6 +15,14 @@ module.exports = (dbPoolInstance) => {
         })
     };  // end of insert orders
 
+    const getOrderById = (orderId, callback) => {
+        const orderQuery = `SELECT * FROM orders WHERE id = '${orderId}'`
+
+        dbPoolInstance.query(orderQuery, (err, results) => {
+            callback(err, results);
+        })
+    }
+
     const getAllOrders = (callback) => {
         const allOrdersQuery = `SELECT orders.id, users.username, users.email, users.contact_num, packages.name, orders.duration, orders.date, orders.time, orders.address
             FROM orders
@@ -60,7 +68,6 @@ module.exports = (dbPoolInstance) => {
         })
     }  // end of myOrders
 
-
     const getMyGames = (userId, callback) => {
         const gamesQuery = `SELECT orders.id, games.name
             FROM orders
@@ -77,12 +84,22 @@ module.exports = (dbPoolInstance) => {
         })
     }  // end of get my games
 
+    const deleteOrder = (orderId, callback) => {
+        const deleteQuery = `DELETE FROM orders WHERE id = '${orderId}'`;
+
+        dbPoolInstance.query(deleteQuery, (err, results) => {
+            callback(err, results);
+        })  // end of pool query
+    };  // end of delete order
+
 
   return {
     insertOrders,
+    getOrderById,
     getAllOrders,
     getAllOrderGames,
     myOrders,
-    getMyGames
+    getMyGames,
+    deleteOrder
   };
 };

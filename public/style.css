@@ -1,4 +1,4 @@
-h1, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
 	text-align: center;
 }
 
@@ -7,6 +7,13 @@ h1 {
 	font-size: 80px !important;
 	margin: 30px 0 60px !important;
 }
+
+h2 {
+	font-family: 'Bungee Shade', cursive;
+	font-size: 60px !important;
+	margin: 30px 0 60px !important;
+}
+
 
 h4, h5, h6 {
 	font-family: 'Germania One', cursive;
@@ -72,12 +79,12 @@ a.nav-link {
 	margin-top: 25px;
 }
 
-label {
+label, th {
 	font-family: 'Germania One', cursive;
 	font-size: 30px;
 }
 
-input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="time"], #availabiltiyInput, #textareaInput {
+input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="time"], input[type="email"], input[type="tel"], input[type="search"], #availabiltiyInput, #textareaInput {
 	font-family: 'Fredericka the Great', cursive;
 	font-size:25px;
 }
@@ -87,7 +94,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="da
 	font-size: 25px;
 }
 
-#loginButton, #deleteButton, #editLink, #backButton, #packageButton {
+#loginButton, #deleteButton, #editLink, #backButton, #packageButton, #chooseGamesButton, #order-button, #search-button {
 	font-family: 'Germania One', cursive !important;
   font-size: 25px !important;
 }
@@ -171,4 +178,25 @@ input[type=checkbox]
 .form-check-lable {
 	margin-top: -8px;
 	margin-left: 15px;
+}
+
+.details-container p {
+	text-align: center;
+	font-family: 'Germania One', cursive;
+  font-size: 25px;
+}
+
+td {
+	font-family: 'Pangolin', cursive;
+	font-size: 25px;
+}
+
+.gameList-container {
+	margin-top: 45px;
+}
+
+#gameList a {
+	font-family: 'Pangolin', cursive;
+	font-size: 25px;
+	color: black;
 }

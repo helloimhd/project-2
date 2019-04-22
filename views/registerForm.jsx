@@ -30,12 +30,12 @@ class Register extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control form-control-lg" name="email" placeholder="Enter your email" required/>
+                            <input type="email" class="form-control form-control-lg" name="email" placeholder="name@email.com" required/>
                         </div>
 
                         <div class="col">
                             <label for="contact_num">Contact No.</label>
-                            <input type="password" class="form-control form-control-lg" name="contact_num" placeholder="Enter your number" required/>
+                            <input type="tel" pattern="[0-9]{8}" class="form-control form-control-lg" name="contact_num" placeholder="8-digit phone num" required/>
                         </div>
                     </div>
 

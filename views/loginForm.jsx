@@ -11,7 +11,7 @@ class Login extends React.Component {
             </div>
 
             <div class="container">
-                <form method="POST" action="/login">
+                <form method="POST" action="/login" autocomplete="off">
 
                     <div class="form-row">
                         <div class="col">

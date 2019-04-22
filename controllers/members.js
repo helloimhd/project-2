@@ -86,7 +86,7 @@ module.exports = (db) => {
         const gamesIdArray = orderDetails.games_id;
         //console.log(gamesIdArray);
 
-        db.games.updateAvail(gamesIdArray, (err, results) => {
+        db.games.updateAvailFalse(gamesIdArray, (err, results) => {
             if (err) {
                 console.error(err.message);
                 response.status(500).send("Error updating availability");
@@ -98,7 +98,8 @@ module.exports = (db) => {
                         console.error(err.message);
                         response.status(500).send("Error inserting order details");
                     } else {
-                        response.send("Order successful");
+                        //response.send("Order successful");
+                        response.redirect('/myOrders');
                     }
                 })  // end of db orders
             }
@@ -114,40 +115,42 @@ module.exports = (db) => {
                 console.error(err.message);
                 response.status(500).send("Error getting my own orders");
             } else {
-                //console.log(results.rows)
-                //response.render('member/myOrders', {myOrders: results.rows})
+                // means havent order yet
+                if (results.rows.length < 1) {
+                    response.render('failed/noOrder')
 
-                // get the games so can put in one td
-                db.orders.getMyGames(userId, (err, gameResults) => {
-                    if (err) {
-                        console.error(err.message);
-                        response.status(500).send("Error getting my own orders");
-                    } else {
-                        //console.log(gameResults.rows)
-                        const games = gameResults.rows
+                    // if theres orderx
+                } else {
+                    // get the games so can put in one td
+                    db.orders.getMyGames(userId, (err, gameResults) => {
+                        if (err) {
+                            console.error(err.message);
+                            response.status(500).send("Error getting games");
+                        } else {
+                            const games = gameResults.rows
 
-                        const gameName = [];
-                        games.map(obj => {
-                            gameName.push(obj.name)
-                        })
+                            const gameName = [];
+                            games.map(obj => {
+                                gameName.push(obj.name)
+                            })
 
-                        const gameNameArray = [];
-                        let n = 0;
-                        // spit the game name array
-                        var i, j, tempArray, chunk = 4;
-                        for (i=0,j=gameName.length; i<j; i+=chunk) {
-                            const gameNameObj = {};
-                            tempArray = gameName.slice(i,i+chunk);
+                            const gameNameArray = [];
+                            let n = 0;
+                            // spit the game name array
+                            var i, j, tempArray, chunk = 4;
+                            for (i=0,j=gameName.length; i<j; i+=chunk) {
+                                const gameNameObj = {};
+                                tempArray = gameName.slice(i,i+chunk);
 
-                            // put the array in the results rows obj
-                            results.rows[n].games = tempArray;
-                            n++;
+                                // put the array in the results rows obj
+                                results.rows[n].games = tempArray;
+                                n++;
+                            }
+
+                            response.render('member/myOrders', {myOrders: results.rows})
                         }
-                        console.log(results.rows);
-
-                        response.render('member/myOrders', {myOrders: results.rows})
-                    }
-                })  // end of db my games
+                    })  // end of db my games
+                }
             }  // end of if statement for error
         })  //  end of my orders
     };  // end of my orders

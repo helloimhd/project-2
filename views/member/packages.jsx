@@ -9,16 +9,17 @@ class Packages extends React.Component {
 
         let allPackages = packages.map(obj => {
             return <div class="package-container">
-                    <div class="image-container">
-                        <img src="https://images.cdn3.stockunlimited.net/clipart/letter-a-with-dripping-blood_1499397.jpg" class="img-fluid" />
+                    <div class="packImg-container">
+                        <img src={obj.img} class="img-fluid" />
                     </div>
 
                     <div class="title-container">
-                        <h3>{obj.name}</h3>
+                        <h4>{obj.name}</h4>
                     </div>
 
                     <div class="details-container">
-                        <p>{obj.details}</p>
+                        <h6>{obj.details}</h6>
+                        <p>${obj.price}</p>
                     </div>
                 </div>
 
@@ -26,14 +27,10 @@ class Packages extends React.Component {
 
         return (<MemberLayout>
 
-            <div class="main-container">
-                <div class="header-container">
-                    <h1>Packages</h1>
-                </div>
-
+            <h1>Packages</h1>
+            <div class="packageMain-container">
                 {allPackages}
 
-                <button class="btn btn-primary btn-lg float-right"><a href="/rent">Rent</a></button>
             </div>
 
         </MemberLayout>)  // end of return

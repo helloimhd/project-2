@@ -10,6 +10,7 @@ class Orders extends React.Component {
         //console.log(myOrders)
 
         let allOrders = orders.map(obj => {
+            const actionDelete = `/orders/${obj.id}/delete?_method=delete`;
 
             return <tr>
                 <th scope="row">{obj.id}</th>
@@ -33,13 +34,18 @@ class Orders extends React.Component {
                 <td>{obj.time}</td>
                 <td>{obj.duration}</td>
                 <td>{obj.address}</td>
+                <td>
+                    <form method="POST" action={actionDelete}>
+                        <button type="submit" class="btn">❌</button>
+                    </form>
+                </td>
             </tr>
 
 
             }) // end of map
         return (<AdminLayout>
 
-            <h1>My Orders</h1>
+            <h1>Orders</h1>
 
             <div class="container">
                 <table class="table table-striped">
@@ -53,6 +59,7 @@ class Orders extends React.Component {
                         <th>Time</th>
                         <th>Duration</th>
                         <th>Address</th>
+                        <th>Delete</th>
                     </tr>
                     {allOrders}
                   </tbody>

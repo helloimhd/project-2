@@ -15,8 +15,8 @@ class Home extends React.Component {
                             <img src={obj.img} alt={obj.name} />
                         </div>
 
-                        <div class="gameName-container">
-                            <h5>{obj.name}</h5>
+                        <div class="title-container">
+                            <h5><a href="/login">{obj.name}</a></h5>
                         </div>
                     </div>
         }) // end of map

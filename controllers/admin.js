@@ -37,7 +37,6 @@ module.exports = (db) => {
                             results.rows[n].games = tempArray;
                             n++;
                         }
-                        console.log(results.rows);
 
                         response.render('admin/orders', {orders: results.rows})
                     }
@@ -47,13 +46,51 @@ module.exports = (db) => {
     };  // end of my orders
 
 
+    const deleteOrderControllerCallback = (request, response) => {
+        const orderId = request.params.id;
+
+        // get the order details and change the games to avail first
+        db.orders.getOrderById(orderId, (err, orderResults) => {
+            if (err) {
+                console.error(err.message);
+                response.status(500).send("Error getting order rows")
+            } else {
+                //console.log(orderResults.rows)
+                // change to avail
+                // push details to array
+                db.games.updateAvailTrue(orderResults.rows[0], (err, results) => {
+                    if (err) {
+                        console.error(err.message);
+                        response.status(500).send("Error updating game availability");
+
+                        // after update then delete it
+                    } else {
+                        db.orders.deleteOrder(orderId, (err, results) => {
+                            if (err) {
+                                console.error(err.message);
+                                response.status(500).send("Error delete order");
+                            } else {
+                                response.redirect('/orders');
+                            }
+                        })  // end of delete order
+                    }
+                })  // end of update avail to true
+            }
+        })  // end of db get order by id
+
+
+
+    }
+
+
   /**
    * ===========================================
    * Export controller functions as a module
    * ===========================================
    */
   return {
-    viewOrders: viewOrdersControllerCallback
+    viewOrders: viewOrdersControllerCallback,
+    deleteOrder: deleteOrderControllerCallback
 
   };
 

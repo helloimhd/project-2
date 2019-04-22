@@ -67,7 +67,7 @@ module.exports = (dbPoolInstance) => {
         })
     };   // end of choosen games
 
-    let updateAvail = (gamesIdArray, callback) => {
+    let updateAvailFalse = (gamesIdArray, callback) => {
         const updateQuery = `UPDATE games SET availability = false
             WHERE id = ${gamesIdArray[0]}
             OR id = ${gamesIdArray[1]}
@@ -77,7 +77,19 @@ module.exports = (dbPoolInstance) => {
         dbPoolInstance.query(updateQuery, (err, results) => {
             callback(err, results);
         })
-    }  // end of update avail
+    }  // end of update avail false
+
+    let updateAvailTrue = (orderDetails, callback) => {
+        const updateQuery = `UPDATE games SET availability = true
+            WHERE id = '${orderDetails.one_games_id}'
+            OR id = '${orderDetails.two_games_id}'
+            OR id = '${orderDetails.three_games_id}'
+            OR id = '${orderDetails.four_games_id}'`;
+
+        dbPoolInstance.query(updateQuery, (err, results) => {
+            callback(err, results);
+        })
+    }  // end of update avail false
 
 
 
@@ -89,6 +101,7 @@ module.exports = (dbPoolInstance) => {
     addGames,
 
     choosenGames,
-    updateAvail
+    updateAvailFalse,
+    updateAvailTrue
   };
 };

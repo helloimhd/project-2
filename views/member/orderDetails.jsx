@@ -11,11 +11,11 @@ class OrderDetails extends React.Component {
         const memberDetails = this.props.memberDetails[0];
 
         let allGames= gamesDetails.map(obj => {
-            return <div class="card" style={{width:'18rem'}}>
+            return <div class="card">
                       <img src={obj.img} class="card-img-top" alt={obj.name} />
-                      <div class="card-body">
+                    {/*  <div class="card-body">
                         <h5 class="card-title">{obj.name}</h5>
-                      </div>
+                      </div>*/}
                       <input name="games_id" value={obj.id} hidden />
                       <input class="max_duration" name="max_duration" value={obj.max_duration} hidden />
                     </div>
@@ -25,11 +25,11 @@ class OrderDetails extends React.Component {
 
         return (<MemberLayout>
 
-            <h1>GameRun!</h1>
+            <h2>Confirm Your Order!</h2>
 
             <div class="container">
             <form name="orderForm" action="order" onSubmit="return validateForm()" method="POST" >
-                <div card-columns>
+                <div class="card-columns">
                     {allGames}
                 </div>
                 <div class="form-row">
@@ -80,17 +80,18 @@ class OrderDetails extends React.Component {
 
                     <div class="col">
                         <label for="address">Address</label>
-                        <textarea id="textAreaInput" class="form-control" name="address" rows="5" required/>
+                        <textarea id="textareaInput" class="form-control" name="address" rows="5" required/>
                     </div>
                 </div>
 
                 <br/>
 
-                <button type="submit" class="btn btn-primary btn-lg float-right" id="order-button">Submit</button>
+                <button type="submit" class="btn btn-dark btn-lg float-right" id="order-button">Submit</button>
             </form>
             </div>
 
             <script src="/orderDetails.js"></script>
+            <script src="/sendEmail.js"></script>
 
 
         </MemberLayout>)  // end of return
