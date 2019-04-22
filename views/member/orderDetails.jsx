@@ -29,7 +29,9 @@ class OrderDetails extends React.Component {
 
             <div class="container">
             <form name="orderForm" action="order" onSubmit="return validateForm()" method="POST" >
-                {allGames}
+                <div card-columns>
+                    {allGames}
+                </div>
                 <div class="form-row">
                     <div class="col">
                         <label for="username">Username</label>

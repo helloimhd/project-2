@@ -11,6 +11,19 @@ class Games extends React.Component {
 
         let allGames = rentGames.map(obj => {
 
+            let availability = "";
+            let label = "";
+            if (obj.availability === true) {
+                availability = <input class="form-check-input" type="checkbox" id="gridCheck" name="games_id" value={obj.id}/>
+
+                label = <label class="form-check-lable" for="gridCheck">{obj.name}</label>
+
+            } else {
+                availability = <input class="form-check-input" type="checkbox" id="gridCheck" name="games_id" value={obj.id} disabled/>
+
+                label = <label class="form-check-lable" for="gridCheck" style={{color: 'grey'}}>{obj.name}</label>
+            }
+
             return <div class="games-container">
                         <div class="gameImg-container">
                             <img src={obj.img} alt={obj.name} />
@@ -19,8 +32,8 @@ class Games extends React.Component {
                         <div class="title-container">
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck" name="games_id" value={obj.id}/>
-                                    <label class="form-check-lable" for="gridCheck">{obj.name}</label>
+                                    {availability}
+                                    {label}
                                 </div>
                             </div>
                         </div>

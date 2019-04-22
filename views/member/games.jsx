@@ -11,14 +11,26 @@ class Games extends React.Component {
         let allGames = games.map(obj => {
             const gameLink = `games/${obj.id}`
 
+            let availability = "";
+            if (obj.availability === true) {
+                availability = "Available";
+            } else {
+                availability = "Not Available";
+            }
+
             return <div class="games-container">
-                        <div class="gameImg-container">
+                        <div class="gameImg-container" id="memberGames">
                             <img src={obj.img} alt={obj.name} />
+
+                            <div class="bottom-right">
+                                <p>{availability}</p>
+                            </div>
                         </div>
 
                         <div class="title-container">
                             <h5><a href={gameLink}>{obj.name}</a></h5>
                         </div>
+
                     </div>
         }) // end of map
 

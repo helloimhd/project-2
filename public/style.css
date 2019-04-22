@@ -48,6 +48,26 @@ a.nav-link {
 	border-radius: 10px;
 }
 
+#memberGames {
+	position: relative;
+  text-align: center;
+  color: white;
+}
+
+.bottom-right {
+	background-color: rgba(0,0,0,0.8);
+	position: absolute;
+  bottom: 8px;
+  right: 10px;
+  border-radius: 10px;
+}
+
+.bottom-right p {
+	font-family: 'Londrina Shadow', cursive;
+	font-size: 20px;
+	margin: 10px;
+}
+
 .title-container {
 	margin-top: 25px;
 }
@@ -136,4 +156,19 @@ div.row.float-right {
 
 #packageButton {
 	margin-top: 10px;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+}
+
+.form-check-lable {
+	margin-top: -8px;
+	margin-left: 15px;
 }

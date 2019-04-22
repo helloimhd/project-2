@@ -8,7 +8,7 @@ module.exports = (dbPoolInstance) => {
         const gamesArray = orderDetails.games_id
         const insertQuery = 'INSERT INTO orders (users_id, packages_id, one_games_id, two_games_id, three_games_id, four_games_id, duration, date, time, address) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id';
 
-        const values = [userId, packageId, gamesArray[0], gamesArray[1], gamesArray[2], gamesArray[3], , orderDetails.date, orderDetails.time, orderDetails.address]
+        const values = [userId, packageId, gamesArray[0], gamesArray[1], gamesArray[2], gamesArray[3], orderDetails.duration, orderDetails.date, orderDetails.time, orderDetails.address]
 
         dbPoolInstance.query(insertQuery, values, (err, results) => {
             callback(err, results);
