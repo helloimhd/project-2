@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const sha256 = require('js-sha256');
 const SALT = sha256("kebab");
 
@@ -99,6 +101,34 @@ module.exports = (db) => {
                         response.status(500).send("Error inserting order details");
                     } else {
                         //response.send("Order successful");
+                        //  get email from user id
+                        db.users.viewCurrentMember(userId, (err, userResults) => {
+                            const userEmail = userResults.rows[0].email
+                            // send out email
+                            var transporter = nodemailer.createTransport({
+                                  service: 'gmail',
+                                  auth: {
+                                    user: 'herda58@gmail.com',
+                                    pass: 'herda12345'
+                                  }
+                                });
+
+                                var mailOptions = {
+                                  from: 'herda58@gmail.com',
+                                  to: `${userEmail}`,
+                                  subject: 'GameRun Rental Confirmation',
+                                  text: `Your order is Confirmed!`
+                                };
+
+                                transporter.sendMail(mailOptions, function(error, info){
+                                  if (error) {
+                                    console.log(error);
+                                  } else {
+                                    console.log('Email sent: ' + info.response);
+                                  }
+                                });   // end of sending out email
+                            })  // end of current member details
+
                         response.redirect('/myOrders');
                     }
                 })  // end of db orders

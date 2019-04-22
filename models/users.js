@@ -1,6 +1,7 @@
 const sha256 = require('js-sha256');
 const SALT = sha256("kebab");
 module.exports = (dbPoolInstance) => {
+
     const checkUser = (input, callback) => {
         const checkUserQuery = `SELECT * FROM users WHERE username = '${input.username}'`;
 
