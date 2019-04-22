@@ -17,7 +17,7 @@ class Games extends React.Component {
                         </div>
 
                         <div class="title-container">
-                            <div class="form-group" name="gameSelection">
+                            <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="gridCheck" name="games_id" value={obj.id}/>
                                     <label class="form-check-lable" for="gridCheck">{obj.name}</label>
@@ -33,16 +33,18 @@ class Games extends React.Component {
         return (<MemberLayout>
 
             <h1>GameRun!</h1>
-            <form method="POST" action={actionLink}>
+            <form name="gameSelection" method="POST" action={actionLink} onSubmit="return validateGames()">
             <div class="home-container">
                 {allGames}
             </div>
 
             <div class="row float-right">
-                <button type="submit" class="btn btn-dark btn-lg" id="backButton">Next
+                <button type="submit" class="btn btn-dark btn-lg" id="chooseGamesButton">Next
                 </button>
             </div>
             </form>
+
+            <script src="/checkSelectedGames.js"></script>
 
         </MemberLayout>)  // end of return
 

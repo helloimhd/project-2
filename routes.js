@@ -40,6 +40,8 @@ module.exports = (app, allModels) => {
 
     app.get('/viewMembers', usersControllerCallbacks.viewMembers);
 
+    app.get('/test', usersControllerCallbacks.test);
+
 
 
     //////////////////////////////////////////////////////////

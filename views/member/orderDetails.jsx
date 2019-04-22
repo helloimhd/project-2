@@ -27,6 +27,7 @@ class OrderDetails extends React.Component {
 
             <h1>GameRun!</h1>
 
+            <div class="container">
             <form name="orderForm" action="order" onSubmit="return validateForm()" method="POST" >
                 {allGames}
                 <div class="form-row">
@@ -37,10 +38,11 @@ class OrderDetails extends React.Component {
 
                     <div class="col">
                         <label for="duration">Duration</label>
-                        <input type="number" class="form-control form-control-lg" name="duration" placeholder="$10 per hr" min="1" id="duration"/>
+                        <input type="number" class="form-control form-control-lg" name="duration" placeholder="Min 1hr" min="1" id="duration" required />
                     </div>
                 </div>
 
+                <br/>
 
                 <div class="form-row">
                     <div class="col">
@@ -50,9 +52,11 @@ class OrderDetails extends React.Component {
 
                     <div class="col">
                         <label for="time">Time</label>
-                        <input type="time" class="form-control form-control-lg" name="time" />
+                        <input type="time" class="form-control form-control-lg" name="time" step="3600" required/>
                     </div>
                 </div>
+
+                <br/>
 
                 <div class="form-row">
                     <div class="col">
@@ -62,9 +66,11 @@ class OrderDetails extends React.Component {
 
                     <div class="col">
                         <label for="date">Date</label>
-                        <input type="date" class="form-control form-control-lg" name="date" />
+                        <input type="date" class="form-control form-control-lg" name="date" required/>
                     </div>
                 </div>
+
+                <br/>
 
                 <div class="form-row">
                     <div class="col">
@@ -72,14 +78,18 @@ class OrderDetails extends React.Component {
 
                     <div class="col">
                         <label for="address">Address</label>
-                        <textarea class="form-control" name="address" rows="5" />
+                        <textarea id="textAreaInput" class="form-control" name="address" rows="5" required/>
                     </div>
                 </div>
 
+                <br/>
+
                 <button type="submit" class="btn btn-primary btn-lg float-right" id="order-button">Submit</button>
             </form>
+            </div>
 
-             <script src="/orderDetails.js"></script>
+            <script src="/orderDetails.js"></script>
+
 
         </MemberLayout>)  // end of return
 

@@ -42,11 +42,12 @@ module.exports = (db) => {
     const orderDetailsControllerCallback = (request, response) => {
         const currentMember = request.cookies.user;
         const input = request.body;
+        const packageId = request.params.id;
+        //console.log(packageId)
 
         //  check if they select less or more than 4 games
         if (input.games_id.length !== 4) {
-            //alert("Please select 4 games");
-            response.send("Please select 4 games");
+            response.redirect(`/rent/${packageId}`);
 
         } else {
             //  get the games they choose
@@ -65,7 +66,7 @@ module.exports = (db) => {
                         } else {
                             // if manage to get member details
 
-                            console.log(memberResults.rows);
+                            //console.log(memberResults.rows);
 
                             response.render('member/orderDetails', {gamesDetails: results.rows, memberDetails: memberResults.rows})
                         }
@@ -81,14 +82,27 @@ module.exports = (db) => {
 
         const userId = request.cookies.user;
 
-        db.orders.insertOrders(userId, packageId, orderDetails, (err, insertResults) => {
+        //  get games id to change the availability on games tables
+        const gamesIdArray = orderDetails.games_id;
+        //console.log(gamesIdArray);
+
+        db.games.updateAvail(gamesIdArray, (err, results) => {
             if (err) {
                 console.error(err.message);
-                response.status(500).send("Error inserting order details");
+                response.status(500).send("Error updating availability");
+
             } else {
-                response.send("Order successful");
+                //  continue inserting orders
+                db.orders.insertOrders(userId, packageId, orderDetails, (err, insertResults) => {
+                    if (err) {
+                        console.error(err.message);
+                        response.status(500).send("Error inserting order details");
+                    } else {
+                        response.send("Order successful");
+                    }
+                })  // end of db orders
             }
-        })  // end of db orders
+        });
     };  // end of order
 
     const myOrdersControllerCallback = (request, response) => {

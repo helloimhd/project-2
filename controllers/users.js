@@ -8,14 +8,20 @@ module.exports = (db) => {
    * ===========================================
    */
 
+    const test = (request, response) => {
+        response.render('test');
+    }
+
     const homeControllerCallback = (request, response) => {
 
         const userId = request.cookies.user;
         db.games.getGames((err, results) => {
             if (err) {
                 console.log(err.message)
-                response.redirect('/login')
+                //response.redirect('/login')
                 //response.status(500).send("Error getting games list");
+
+                response.status(500).render('failed/gameListError');
 
             } else {
                 // //  if no error, render and set cookies
@@ -159,6 +165,7 @@ module.exports = (db) => {
    * ===========================================
    */
   return {
+    test: test,
     home: homeControllerCallback,
 
     registerForm: registerFormControllerCallback,

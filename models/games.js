@@ -67,11 +67,17 @@ module.exports = (dbPoolInstance) => {
         })
     };   // end of choosen games
 
-    let totalGameDuration = (gamesArray, callback) => {
+    let updateAvail = (gamesIdArray, callback) => {
+        const updateQuery = `UPDATE games SET availability = false
+            WHERE id = ${gamesIdArray[0]}
+            OR id = ${gamesIdArray[1]}
+            OR id = ${gamesIdArray[2]}
+            OR id = ${gamesIdArray[3]}`;
 
-
-
-    }
+        dbPoolInstance.query(updateQuery, (err, results) => {
+            callback(err, results);
+        })
+    }  // end of update avail
 
 
 
@@ -83,6 +89,6 @@ module.exports = (dbPoolInstance) => {
     addGames,
 
     choosenGames,
-    totalGameDuration
+    updateAvail
   };
 };
