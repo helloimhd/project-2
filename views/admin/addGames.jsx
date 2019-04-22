@@ -24,7 +24,7 @@ class AddGames extends React.Component {
 
             <div class="new-header">
                 <h1>Add Game</h1>
-                <h3 id="gameId">{this.props.id}</h3>
+                {/*<h3 id="gameId">{this.props.id}</h3>*/}
             </div>
 
             <div class="container">
@@ -79,7 +79,7 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="description">Description</label>
-                            <textarea id="textareaInputclass" ="form-control" name="description" rows="5" value={description} ></textarea>
+                            <textarea id="textareaInput" class="form-control" name="description" rows="5" value={description} ></textarea>
                         </div>
 
                     </div>
