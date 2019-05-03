@@ -2,17 +2,17 @@
 
 A CRUD app that allows you to rent board games for your events.
 
-This project utilizes PostgreSQL to create a database and interact with the data. 
-It runs using Node.js and uses React.js for the front-end. 
-MVC is used for this project.
+
+This project is done with the use of MVC, which utilizes PostgreSQL to create a database and manages interaction with the data. 
+React.js is used for the front-end whilst running with Node.js.
+
 
 How the app works:
 * Admin (The one who is renting out the board games)
-	- Can log in and add the games that they will be renting out 
+	- Admins will be able to add, edit, delete and view games from their product offerings
 	- API is requested from BoardGameGeeks to get the details of the board games 
-	- Can view, edit and delete the games  
-	- Can view members and orders
+	- Manage orders and view members
+	
 
 * User (The one who will be renting the board games)
-	- Can create account and log in 
-	- Can view the games and rent the games 
+	- Users will be able to create and account and log in to manage their orders; from viewing the selection of games to renting them
