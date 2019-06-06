@@ -1,6 +1,8 @@
 var React = require('react');
 var MemberLayout = require('./memberLayout');
 
+const moment = require('moment');
+
 class MyOrders extends React.Component {
 
     render () {
@@ -22,9 +24,9 @@ class MyOrders extends React.Component {
                         <li>{obj.games[3]}</li>
                     </ul>
                 </td>
-                <td>{obj.date}</td>
-                <td>{obj.time}</td>
-                <td>{obj.duration}</td>
+                <td>{moment(obj.date).format('DD MMMM YYYY')}</td>
+                <td>{moment(obj.time, "hh").format('LT')}</td>
+                <td>{obj.duration}hr</td>
                 <td>{obj.address}</td>
             </tr>
 

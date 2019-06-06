@@ -1,6 +1,8 @@
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const parser = require('xml2json');
 
+const sha256 = require('js-sha256');
+const SALT = sha256("kebab");
 module.exports = (db) => {
 
   /**
@@ -30,7 +32,7 @@ module.exports = (db) => {
             response.status(500).send("Error getting games list")
         } else {
             //  check if admin or member
-            if (type === "admin") {
+            if (type === (sha256("admin") + SALT)) {
                 response.render('admin/games', {games:results.rows});
             } else {
                 response.render('member/games', {games:results.rows});
@@ -50,7 +52,7 @@ module.exports = (db) => {
             response.status(500).send("Error getting indv game")
         } else {
             // check cookie is admin or member
-            if (type === "admin") {
+            if (type === (sha256("admin") + SALT)) {
                 response.render('admin/indvGame', results.rows[0]);
             } else {
                 response.render('member/indvGame', results.rows[0]);
@@ -133,7 +135,8 @@ module.exports = (db) => {
             response.status(500).send("Query error for adding games.")
         } else {
             //response.send("Add Game - Successful")
-            response.redirect('/games');
+            let addedGameId = results.rows[0].id;
+            response.redirect(`/games/${addedGameId}`);
         }
     })
   }  // end of adding games

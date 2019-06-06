@@ -48,9 +48,9 @@ class AdminLayout extends React.Component {
                             <a class="nav-link" href="/orders">Orders</a>
                             </li>
 
-                          <li class="nav-item">
+                          {/*<li class="nav-item">
                             <a class="nav-link" href="/members">Members</a>
-                            </li>
+                            </li>*/}
                         </ul>
 {/*
                         <form class="form-inline my-2 my-lg-0">
@@ -62,7 +62,6 @@ class AdminLayout extends React.Component {
 
                     {this.props.children}
 
-                    <script src="/script.js"></script>
 
 
                 </body>

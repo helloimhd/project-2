@@ -10,6 +10,7 @@ var parser = (data) => {
 }
 
 var doSearch = () => {
+    console.log("entered do search")
     // to clear div first
     $(document).ready(function(){
         $(".gameList-container").empty();
@@ -25,9 +26,7 @@ var doSearch = () => {
 
     req.send(null);
     let data = req.responseText
-
     let xmlDoc = parser(data);
-    //console.log(xmlDoc);
 
     //  create and array of the items
     const items = xmlDoc.getElementsByTagName("item");
@@ -35,14 +34,14 @@ var doSearch = () => {
     //  create a list from items and link it to game details, so a list of a tag
     // need to store id also
     let div = document.createElement("div");
-    div.className = "gameList-container"
+    div.className = "gameList-container";
 
     let ul = document.createElement("ul");
     ul.id = "gameList";
     for (let i = 0; i < items.length; i++) {
         let gameName = items[i].getElementsByTagName("name")[0].getAttribute("value");
         let gameId = items[i].getAttribute("id");
-        console.log(gameId)
+        //console.log(gameId)
 
         let li = document.createElement("li");
         let a = document.createElement("a");
@@ -62,6 +61,14 @@ var doSearch = () => {
 
 var searchButton = document.getElementById("search-button");
 searchButton.addEventListener("click", doSearch);
+
+container.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch();
+    }
+});
+
 
 // var gameList = document.getElementById("gameList");
 // gameList.addEventListener("click", getGameDetails)

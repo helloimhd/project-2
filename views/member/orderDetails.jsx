@@ -1,10 +1,14 @@
 var React = require('react');
 var MemberLayout = require('./memberLayout');
 
+const moment = require('moment');
+
 class OrderDetails extends React.Component {
 
     render () {
 
+        const today = moment().format('YYYY-MM-DD');
+        console.log(today)
         const gamesDetails = this.props.gamesDetails;
         // return the array of objects
 
@@ -68,7 +72,7 @@ class OrderDetails extends React.Component {
 
                     <div class="col">
                         <label for="date">Date</label>
-                        <input type="date" class="form-control form-control-lg" name="date" required/>
+                        <input type="date" class="form-control form-control-lg" name="date" min={today} required/>
                     </div>
                 </div>
 

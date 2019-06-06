@@ -37,7 +37,7 @@ a.nav-link {
 .home-container {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: center;
 	flex-wrap: wrap;
 	align-content: flex-start;
 }
@@ -94,7 +94,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="da
 	font-size: 25px;
 }
 
-#loginButton, #deleteButton, #editLink, #backButton, #packageButton, #chooseGamesButton, #order-button, #search-button, #addButton {
+#registerButton, #loginButton, #deleteButton, #editLink, #backButton, #packageButton, #chooseGamesButton, #order-button, #search-button, #addButton {
 	font-family: 'Germania One', cursive !important;
   font-size: 25px !important;
 }

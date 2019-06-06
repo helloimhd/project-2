@@ -1,6 +1,8 @@
 var React = require('react');
 var AdminLayout = require('./adminLayout');
 
+const moment = require('moment');
+
 class Orders extends React.Component {
 
     render () {
@@ -30,9 +32,9 @@ class Orders extends React.Component {
                         <li>{obj.games[3]}</li>
                     </ul>
                 </td>
-                <td>{obj.date}</td>
-                <td>{obj.time}</td>
-                <td>{obj.duration}</td>
+                <td>{moment(obj.date).format('DD MMMM YYYY')}</td>
+                <td>{moment(obj.time, "hh").format('LT')}</td>
+                <td>{obj.duration}hr</td>
                 <td>{obj.address}</td>
                 <td>
                     <form method="POST" action={actionDelete}>
@@ -52,7 +54,7 @@ class Orders extends React.Component {
                   <tbody>
                     <tr>
                         <th>Order</th>
-                        <th>Username</th>
+                        <th>User</th>
                         <th>Package</th>
                         <th>Games</th>
                         <th>Date</th>
