@@ -32,11 +32,11 @@
   "description": "Start your MVC app here by copying this bolierplate code.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helloimhd/project-2.git"
+    "url": "git+https://github.com/helloimhd/gamerun.git"
   },
   "author": "",
   "bugs": {
-    "url": "https://github.com/helloimhd/project-2/issues"
+    "url": "https://github.com/helloimhd/gamerun/issues"
   },
-  "homepage": "https://github.com/helloimhd/project-2#readme"
+  "homepage": "https://github.com/helloimhd/gamerun#readme"
 }
