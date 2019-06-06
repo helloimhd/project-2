@@ -54,7 +54,7 @@ class Orders extends React.Component {
                   <tbody>
                     <tr>
                         <th>Order</th>
-                        <th>Username</th>
+                        <th>User</th>
                         <th>Package</th>
                         <th>Games</th>
                         <th>Date</th>
