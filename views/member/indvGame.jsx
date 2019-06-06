@@ -31,7 +31,7 @@ class IndvGame extends React.Component {
 
                     <div class="row">
                         <div class="col-7">
-                            <p>{this.props.description}</p>
+                            <p id="gameDescription">{this.props.description}</p>
                         </div>
 
                         <div class="col-3" id="gameDetails">
@@ -65,6 +65,8 @@ class IndvGame extends React.Component {
                     </div>
                 </div>
             </div>
+
+            <script src="/changeText.js"></script>
 
         </MemberLayout>)  // end of return
 
