@@ -33,12 +33,12 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="gameName">Name</label>
-                            <input type="text" class="form-control form-control-lg" name="name" value={name} />
+                            <input type="text" class="form-control form-control-lg" name="name" value={name} required/>
                         </div>
 
                         <div class="col">
                             <label for="gameImg">Image</label>
-                            <input type="text" class="form-control form-control-lg" name="img" value={img}/>
+                            <input type="text" class="form-control form-control-lg" name="img" value={img} required/>
                         </div>
                     </div>
 
@@ -47,12 +47,12 @@ class AddGames extends React.Component {
                     <div class="form-row">
                         <div class="col">
                             <label for="minNumOfPlayers">Min. Players</label>
-                            <input type="number" class="form-control form-control-lg" name="min_players" min="1" value={minPlayers}/>
+                            <input type="number" class="form-control form-control-lg" name="min_players" min="1" value={minPlayers} required/>
                         </div>
 
                         <div class="col">
                             <label for="maxNumOfPlayers">Max. Players</label>
-                            <input type="number" class="form-control form-control-lg" name="max_players" min="1" value={maxPlayers}/>
+                            <input type="number" class="form-control form-control-lg" name="max_players" min="1" value={maxPlayers} required/>
                         </div>
 
 {/*                        <div class="col">
@@ -62,24 +62,24 @@ class AddGames extends React.Component {
 */}
                         <div class="col">
                             <label for="minDuration">Min. Duration</label>
-                            <input type="number" class="form-control form-control-lg" name="min_duration" value={minDuration} />
+                            <input type="number" class="form-control form-control-lg" name="min_duration" value={minDuration} required/>
                         </div>
 
                         <div class="col">
                             <label for="maxDuration">Max. Duration</label>
-                            <input type="number" class="form-control form-control-lg" name="max_duration" value={maxDuration}/>
+                            <input type="number" class="form-control form-control-lg" name="max_duration" value={maxDuration} required/>
                         </div>
 
                         <div class="col">
                             <label for="complexity">Complexity</label>
-                            <input type="text" class="form-control form-control-lg" name="complexity" />
+                            <input type="text" class="form-control form-control-lg" name="complexity" required/>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col">
                             <label for="description">Description</label>
-                            <textarea id="textareaInput" class="form-control" name="description" rows="5" value={description} ></textarea>
+                            <textarea id="textareaInput" class="form-control" name="description" rows="5" value={description} required></textarea>
                         </div>
 
                     </div>

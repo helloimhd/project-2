@@ -135,7 +135,8 @@ module.exports = (db) => {
             response.status(500).send("Query error for adding games.")
         } else {
             //response.send("Add Game - Successful")
-            response.redirect('/games');
+            let addedGameId = results.rows[0].id;
+            response.redirect(`/games/${addedGameId}`);
         }
     })
   }  // end of adding games

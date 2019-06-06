@@ -13,9 +13,9 @@ class Games extends React.Component {
 
             let availability = "";
             if (obj.availability === true) {
-                availability = "Available";
+                availability = "Available ✅";
             } else {
-                availability = "Not Available";
+                availability = "Not Available ❌";
             }
 
             return <div class="games-container">
