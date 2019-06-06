@@ -117,7 +117,7 @@ module.exports = (db) => {
 
                     //let hashedUsername = sha256(results.rows[0].username);
                     response.cookie("user", results.rows[0].id);
-                    response.cookie("type", results.rows[0].type)
+                    response.cookie("type", sha256(results.rows[0].type) + SALT)
 
                     response.redirect("/");
 /*

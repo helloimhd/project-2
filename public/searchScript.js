@@ -10,6 +10,7 @@ var parser = (data) => {
 }
 
 var doSearch = () => {
+    console.log("entered do search")
     // to clear div first
     $(document).ready(function(){
         $(".gameList-container").empty();
@@ -60,8 +61,9 @@ var doSearch = () => {
     container.appendChild(div);
 };
 
-var searchButton = document.getElementById("search-button");
-searchButton.addEventListener("click", doSearch);
+// var searchButton = document.getElementById("search-button");
+// searchButton.addEventListener("click", doSearch);
+
 
 // var gameList = document.getElementById("gameList");
 // gameList.addEventListener("click", getGameDetails)

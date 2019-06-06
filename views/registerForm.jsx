@@ -1,4 +1,4 @@
-var React = require('react');
+    var React = require('react');
 var Layout = require('./layout');
 
 class Register extends React.Component {
@@ -41,7 +41,7 @@ class Register extends React.Component {
 
                     <br />
 
-                    <button type="submit" class="btn btn-dark btn-lg float-right">Register</button>
+                    <button type="submit" class="btn btn-dark btn-lg float-right" id="registerButton">Register</button>
 
                 </form>
             </div>

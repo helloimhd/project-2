@@ -62,7 +62,6 @@ class AdminLayout extends React.Component {
 
                     {this.props.children}
 
-                    <script src="/script.js"></script>
 
 
                 </body>

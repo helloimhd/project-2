@@ -117,7 +117,8 @@ module.exports = (db) => {
                                   from: 'herda58@gmail.com',
                                   to: `${userEmail}`,
                                   subject: 'GameRun Rental Confirmation',
-                                  text: `Your order is Confirmed!`
+                                  text: `Your order is Confirmed!
+                                         Kindly make your payment when we deliver the games!`
                                 };
 
                                 transporter.sendMail(mailOptions, function(error, info){
