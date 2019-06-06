@@ -61,8 +61,15 @@ var doSearch = () => {
     container.appendChild(div);
 };
 
-// var searchButton = document.getElementById("search-button");
-// searchButton.addEventListener("click", doSearch);
+var searchButton = document.getElementById("search-button");
+searchButton.addEventListener("click", doSearch);
+
+container.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch();
+    }
+});
 
 
 // var gameList = document.getElementById("gameList");

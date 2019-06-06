@@ -24,7 +24,7 @@ class SearchGame extends React.Component {
                 </form>
 
                 <div class="submit-container">
-                    <button type="button" class="btn btn btn-outline-dark btn-lg float-right" id="search-button">CLICK to Search</button>
+                    <button type="button" class="btn btn btn-outline-dark btn-lg float-right" id="search-button">Search</button>
                 </div>
             </div>
 
