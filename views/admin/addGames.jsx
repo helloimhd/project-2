@@ -15,8 +15,12 @@ class AddGames extends React.Component {
         const img = this.props.data.image;
         const minPlayers = this.props.data.minplayers.value;
         const maxPlayers = this.props.data.maxplayers.value;
-        const minDuration = this.props.data.minplaytime.value;
-        const maxDuration = this.props.data.maxplaytime.value;
+        let minDuration = 0;
+        let maxDuration = 0;
+        if (this.props.data.minplaytime !== undefined) {
+            minDuration = this.props.data.minplaytime.value;
+            maxDuration = this.props.data.maxplaytime.value;
+        }
         const description = this.props.data.description;
 
 
